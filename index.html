@@ -3,29 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nissan Mthatha — Rules &amp; Info</title>
+<title>Nissan Mthatha — Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* ============ BASE ============ */
   :root{
-    --red:#e11d48;
-    --red-soft:#fff1f4;
-    --red-line:#ffd4de;
-    --ink:#111827;
-    --ink-soft:#374151;
-    --muted:#6b7280;
-    --line:#e5e7eb;
-    --bg:#fafbfc;
-    --card:#ffffff;
-    --green:#059669;
-    --green-soft:#ecfdf5;
-    --amber:#d97706;
-    --amber-soft:#fffbeb;
-    --blue:#2563eb;
-    --blue-soft:#eff6ff;
-    --radius:16px;
-    --shadow-sm:0 1px 2px rgba(17,24,39,.04), 0 2px 8px rgba(17,24,39,.04);
-    --shadow-md:0 4px 12px rgba(17,24,39,.06), 0 12px 32px rgba(17,24,39,.06);
-    --shadow-lg:0 8px 24px rgba(17,24,39,.08), 0 24px 56px rgba(17,24,39,.08);
+    --bg-0:#05070d;
+    --bg-1:#0a0e1a;
+    --bg-2:#0f1524;
+    --bg-3:#151c30;
+    --surface:rgba(20,28,48,.65);
+    --surface-2:rgba(28,38,64,.55);
+    --border:rgba(120,200,255,.12);
+    --border-strong:rgba(120,200,255,.28);
+
+    --cyan:#22d3ee;
+    --cyan-soft:#67e8f9;
+    --cyan-glow:rgba(34,211,238,.35);
+
+    --violet:#a855f7;
+    --violet-soft:#c084fc;
+    --violet-glow:rgba(168,85,247,.35);
+
+    --pink:#ec4899;
+    --pink-glow:rgba(236,72,153,.35);
+
+    --lime:#a3e635;
+    --lime-glow:rgba(163,230,53,.3);
+
+    --amber:#fbbf24;
+    --amber-glow:rgba(251,191,36,.3);
+
+    --red:#f43f5e;
+    --red-glow:rgba(244,63,94,.35);
+
+    --text:#e6f1ff;
+    --text-2:#a8b8d8;
+    --text-3:#6b7c9e;
+    --muted:#4a5878;
+
+    --radius:18px;
+    --radius-sm:12px;
+
+    --font-display:'Orbitron',sans-serif;
+    --font-body:'Space Grotesk',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
@@ -33,520 +57,953 @@
   html{scroll-behavior:smooth}
 
   body{
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background:var(--bg);
-    color:var(--ink-soft);
+    font-family:var(--font-body);
+    background:var(--bg-0);
+    color:var(--text);
     line-height:1.65;
     font-size:16px;
+    overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
+    position:relative;
+    min-height:100vh;
+  }
+
+  /* ============ ANIMATED BACKGROUND ============ */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse 800px 600px at 15% 10%, rgba(34,211,238,.12), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 85% 20%, rgba(168,85,247,.12), transparent 60%),
+      radial-gradient(ellipse 900px 700px at 50% 100%, rgba(236,72,153,.08), transparent 60%);
+    z-index:-2;
+    pointer-events:none;
+    animation:bgShift 20s ease-in-out infinite alternate;
+  }
+  @keyframes bgShift{
+    0%{transform:translate(0,0) scale(1)}
+    100%{transform:translate(-30px,-20px) scale(1.05)}
+  }
+
+  /* Grid overlay */
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(120,200,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120,200,255,.035) 1px, transparent 1px);
+    background-size:60px 60px;
+    z-index:-1;
+    pointer-events:none;
+    mask-image:radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse at center, black 30%, transparent 80%);
   }
 
   /* ============ HERO ============ */
   .hero{
-    background:linear-gradient(160deg,#111827 0%, #1f2937 50%, #374151 100%);
-    color:#fff;
-    padding:56px 24px 64px;
     position:relative;
+    padding:70px 24px 60px;
     overflow:hidden;
+    border-bottom:1px solid var(--border);
   }
-  .hero::before{
-    content:"";
-    position:absolute;
-    top:-120px;right:-120px;
-    width:420px;height:420px;
-    background:radial-gradient(circle, rgba(225,29,72,.35), transparent 70%);
-    border-radius:50%;
-    animation:float 12s ease-in-out infinite;
+  .hero-inner{
+    max-width:1280px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
   }
-  .hero::after{
-    content:"";
-    position:absolute;
-    bottom:-160px;left:-100px;
-    width:360px;height:360px;
-    background:radial-gradient(circle, rgba(59,130,246,.18), transparent 70%);
-    border-radius:50%;
-    animation:float 15s ease-in-out infinite reverse;
-  }
-  @keyframes float{
-    0%,100%{transform:translate(0,0) scale(1)}
-    50%{transform:translate(24px,-24px) scale(1.08)}
-  }
-  .hero .inner{max-width:820px;margin:0 auto;position:relative;z-index:1}
 
-  .hero .badge-top{
-    display:inline-flex;align-items:center;gap:8px;
-    background:rgba(225,29,72,.2);
-    border:1px solid rgba(225,29,72,.4);
-    color:#fecdd3;
-    padding:6px 14px;border-radius:999px;
-    font-size:.82rem;font-weight:600;
-    letter-spacing:.02em;
-    margin-bottom:20px;
-    animation:fadeDown .7s ease both;
+  .hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(34,211,238,.08);
+    border:1px solid rgba(34,211,238,.3);
+    color:var(--cyan-soft);
+    padding:7px 16px;
+    border-radius:999px;
+    font-family:var(--font-mono);
+    font-size:.76rem;
+    font-weight:500;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    margin-bottom:26px;
+    box-shadow:0 0 20px rgba(34,211,238,.15), inset 0 0 20px rgba(34,211,238,.05);
+    animation:fadeUp .8s ease both;
   }
-  .hero .badge-top .dot{
-    width:7px;height:7px;border-radius:50%;background:#fb7185;
-    animation:pulse 2s infinite;
+  .hero-tag .blip{
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 12px var(--cyan), 0 0 4px var(--cyan);
+    animation:blip 1.6s ease-in-out infinite;
   }
-  @keyframes pulse{
+  @keyframes blip{
     0%,100%{opacity:1;transform:scale(1)}
-    50%{opacity:.5;transform:scale(1.3)}
+    50%{opacity:.4;transform:scale(1.4)}
   }
 
   .hero h1{
-    font-size:clamp(1.85rem,5vw,2.6rem);
-    font-weight:800;
-    letter-spacing:-.03em;
-    line-height:1.15;
-    margin-bottom:16px;
-    animation:fadeDown .7s .1s ease both;
+    font-family:var(--font-display);
+    font-size:clamp(2rem,6vw,3.6rem);
+    font-weight:900;
+    line-height:1.05;
+    letter-spacing:-.02em;
+    margin-bottom:20px;
+    background:linear-gradient(135deg, #fff 0%, var(--cyan-soft) 40%, var(--violet-soft) 70%, #fff 100%);
+    background-size:200% 200%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:fadeUp .8s .1s ease both, shimmer 8s ease-in-out infinite;
   }
-  .hero p{
-    color:#9ca3af;
-    font-size:clamp(.95rem,2.2vw,1.08rem);
-    max-width:620px;
-    animation:fadeDown .7s .2s ease both;
+  @keyframes shimmer{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
   }
 
-  .brand-chips{
-    display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;
-    animation:fadeDown .7s .3s ease both;
+  .hero p.sub{
+    color:var(--text-2);
+    font-size:clamp(.95rem,2vw,1.15rem);
+    max-width:640px;
+    font-weight:300;
+    margin-bottom:32px;
+    animation:fadeUp .8s .2s ease both;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* Brand chips */
+  .chips{
+    display:flex;flex-wrap:wrap;gap:10px;
+    animation:fadeUp .8s .3s ease both;
   }
   .chip{
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
-    color:#e5e7eb;
-    padding:5px 13px;border-radius:999px;
-    font-size:.8rem;font-weight:500;
-    transition:.2s;
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    backdrop-filter:blur(10px);
+    padding:8px 16px;
+    border-radius:10px;
+    font-size:.85rem;
+    font-weight:500;
+    color:var(--text-2);
+    transition:.3s cubic-bezier(.16,1,.3,1);
+    position:relative;
+    overflow:hidden;
   }
-  .chip:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
-  .chip.hot{
-    background:rgba(225,29,72,.22);
-    border-color:rgba(225,29,72,.5);
-    color:#fecdd3;
+  .chip::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, transparent, rgba(34,211,238,.1), transparent);
+    opacity:0;
+    transition:opacity .3s;
   }
+  .chip:hover{
+    transform:translateY(-3px);
+    border-color:var(--cyan);
+    color:#fff;
+    box-shadow:0 8px 24px rgba(34,211,238,.2);
+  }
+  .chip:hover::before{opacity:1}
+  .chip .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 8px var(--cyan);
+  }
+  .chip.soon{
+    border-color:rgba(251,191,36,.35);
+    color:var(--amber);
+  }
+  .chip.soon .dot{background:var(--amber);box-shadow:0 0 8px var(--amber)}
 
-  @keyframes fadeDown{
-    from{opacity:0;transform:translateY(-12px)}
-    to{opacity:1;transform:translateY(0)}
+  /* ============ STATUS BAR ============ */
+  .status-bar{
+    background:rgba(10,14,26,.7);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+  }
+  .status-inner{
+    max-width:1280px;
+    margin:0 auto;
+    padding:10px 24px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .status-inner::-webkit-scrollbar{display:none}
+
+  .status-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:.75rem;
+    color:var(--text-3);
+    white-space:nowrap;
+    letter-spacing:.05em;
+  }
+  .status-item .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--lime);
+    box-shadow:0 0 8px var(--lime);
+    animation:blip 2s infinite;
+  }
+  .status-item.warn .dot{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+
+  .status-sep{
+    width:1px;height:20px;
+    background:var(--border);
+    flex:none;
   }
 
   /* ============ NAV ============ */
   .nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(255,255,255,.85);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--line);
+    background:rgba(5,7,13,.85);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:41px;
+    z-index:99;
   }
-  .nav .inner{
-    max-width:820px;margin:0 auto;
-    display:flex;gap:4px;overflow-x:auto;
-    padding:10px 20px;
+  .nav-inner{
+    max-width:1280px;
+    margin:0 auto;
+    padding:12px 24px;
+    display:flex;
+    gap:6px;
+    overflow-x:auto;
     scrollbar-width:none;
   }
-  .nav .inner::-webkit-scrollbar{display:none}
+  .nav-inner::-webkit-scrollbar{display:none}
   .nav a{
-    white-space:nowrap;text-decoration:none;
-    color:var(--muted);font-size:.85rem;font-weight:600;
-    padding:8px 14px;border-radius:999px;
-    transition:.2s;
+    white-space:nowrap;
+    text-decoration:none;
+    color:var(--text-3);
+    font-family:var(--font-mono);
+    font-size:.74rem;
+    font-weight:500;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:9px 16px;
+    border-radius:8px;
+    border:1px solid transparent;
+    transition:.25s cubic-bezier(.16,1,.3,1);
   }
-  .nav a:hover{background:#f3f4f6;color:var(--ink)}
-  .nav a.active{background:var(--red);color:#fff;box-shadow:0 2px 8px rgba(225,29,72,.3)}
+  .nav a:hover{
+    color:var(--cyan-soft);
+    border-color:var(--border);
+    background:rgba(34,211,238,.05);
+  }
+  .nav a.active{
+    color:var(--cyan);
+    border-color:var(--cyan);
+    background:rgba(34,211,238,.1);
+    box-shadow:0 0 20px rgba(34,211,238,.15), inset 0 0 12px rgba(34,211,238,.08);
+  }
 
   /* ============ MAIN ============ */
-  main{max-width:820px;margin:0 auto;padding:40px 20px 80px}
+  main{
+    max-width:1280px;
+    margin:0 auto;
+    padding:56px 24px 100px;
+  }
 
   section{
-    scroll-margin-top:70px;
-    margin-bottom:48px;
+    scroll-margin-top:130px;
+    margin-bottom:72px;
   }
 
-  .section-head{
-    display:flex;align-items:center;gap:14px;
-    margin-bottom:6px;
+  /* ============ SECTION HEADERS ============ */
+  .sec-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:32px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--border);
+    position:relative;
   }
-  .section-icon{
-    width:40px;height:40px;flex:none;
-    border-radius:12px;
-    background:var(--red-soft);
-    border:1px solid var(--red-line);
-    display:grid;place-items:center;
-    font-size:1.15rem;
-    transition:.3s;
+  .sec-head::after{
+    content:"";
+    position:absolute;
+    bottom:-1px;left:0;
+    width:80px;height:1px;
+    background:linear-gradient(90deg, var(--cyan), transparent);
+    box-shadow:0 0 12px var(--cyan);
   }
-  section:hover .section-icon{
-    transform:scale(1.08) rotate(-5deg);
-    background:var(--red);
+  .sec-head-left{
+    display:flex;
+    align-items:center;
+    gap:20px;
   }
-  section:hover .section-icon span{
-    filter:brightness(0) invert(1);
-  }
-  .section-head h2{
-    font-size:clamp(1.25rem,3.5vw,1.5rem);
-    font-weight:800;
-    color:var(--ink);
+  .sec-num{
+    font-family:var(--font-display);
+    font-size:2.6rem;
+    font-weight:900;
+    line-height:1;
+    color:transparent;
+    -webkit-text-stroke:1px var(--border-strong);
     letter-spacing:-.02em;
+    transition:.4s;
   }
-  .section-sub{
-    color:var(--muted);
-    font-size:.92rem;
-    margin:0 0 20px 54px;
+  section:hover .sec-num{
+    -webkit-text-stroke:1px var(--cyan);
+    text-shadow:0 0 30px var(--cyan-glow);
   }
-  @media(max-width:520px){
-    .section-sub{margin-left:0}
+  .sec-title h2{
+    font-family:var(--font-display);
+    font-size:clamp(1.3rem,3vw,1.7rem);
+    font-weight:700;
+    color:#fff;
+    letter-spacing:.01em;
+    margin-bottom:4px;
+  }
+  .sec-title p{
+    font-size:.88rem;
+    color:var(--text-3);
+    font-weight:300;
+  }
+  .sec-tag{
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    color:var(--text-3);
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    padding:6px 12px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    background:rgba(34,211,238,.03);
+    white-space:nowrap;
+  }
+  @media(max-width:640px){
+    .sec-head{flex-direction:column;align-items:flex-start;gap:12px}
+    .sec-num{font-size:2rem}
   }
 
-  /* ============ SCROLL REVEAL ============ */
+  /* ============ REVEAL ============ */
   .reveal{
     opacity:0;
-    transform:translateY(24px);
-    transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+    transform:translateY(28px);
+    transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
   }
-  .reveal.in{
-    opacity:1;
-    transform:translateY(0);
+  .reveal.in{opacity:1;transform:translateY(0)}
+
+  /* ============ BENTO GRID ============ */
+  .bento{
+    display:grid;
+    grid-template-columns:repeat(12, 1fr);
+    gap:16px;
+  }
+  .bento > *{grid-column:span 12}
+
+  @media(min-width:720px){
+    .col-6{grid-column:span 6}
+    .col-4{grid-column:span 4}
+    .col-8{grid-column:span 8}
+    .col-3{grid-column:span 3}
   }
 
-  /* ============ CARD ============ */
-  .card{
-    background:var(--card);
-    border:1px solid var(--line);
+  /* ============ GLASS CARD ============ */
+  .glass{
+    background:var(--surface);
+    border:1px solid var(--border);
     border-radius:var(--radius);
-    box-shadow:var(--shadow-sm);
-    padding:22px 24px;
-    transition:box-shadow .3s, transform .3s, border-color .3s;
-  }
-  .card:hover{
-    box-shadow:var(--shadow-md);
-    border-color:#d1d5db;
-  }
-  .card + .card{margin-top:14px}
-
-  .card h3{
-    font-size:1rem;
-    font-weight:700;
-    color:var(--ink);
-    margin-bottom:14px;
-    display:flex;align-items:center;gap:8px;
-  }
-
-  /* ============ CALLOUTS ============ */
-  .callout{
-    border-radius:var(--radius);
-    padding:18px 20px 18px 54px;
+    padding:24px;
+    backdrop-filter:blur(14px);
     position:relative;
-    font-size:.93rem;
-    margin-bottom:16px;
-    border:1px solid;
-    transition:transform .3s, box-shadow .3s;
-  }
-  .callout:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
-  .callout::before{
-    position:absolute;left:18px;top:17px;
-    font-size:1.1rem;
-  }
-  .callout.warn{background:var(--amber-soft);border-color:#fde68a;color:#92400e}
-  .callout.warn::before{content:"⚠️"}
-  .callout.info{background:var(--blue-soft);border-color:#bfdbfe;color:#1e40af}
-  .callout.info::before{content:"💡"}
-  .callout.ok{background:var(--green-soft);border-color:#a7f3d0;color:#065f46}
-  .callout.ok::before{content:"✅"}
-  .callout strong{font-weight:700}
-
-  /* ============ ACCORDION ============ */
-  .acc{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow-sm);
     overflow:hidden;
-    transition:box-shadow .3s, border-color .3s;
+    transition:.35s cubic-bezier(.16,1,.3,1);
   }
-  .acc:hover{box-shadow:var(--shadow-md);border-color:#d1d5db}
-  .acc + .acc{margin-top:12px}
+  .glass::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity:.5;
+  }
+  .glass:hover{
+    border-color:var(--border-strong);
+    transform:translateY(-3px);
+    box-shadow:0 16px 40px rgba(0,0,0,.5), 0 0 40px rgba(34,211,238,.08);
+  }
 
-  .acc-head{
-    width:100%;
-    background:none;border:none;
-    padding:18px 20px;
-    display:flex;align-items:center;gap:14px;
-    cursor:pointer;
-    font-family:inherit;
-    font-size:1rem;
+  .glass-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--border);
+  }
+  .glass-title{
+    font-family:var(--font-display);
+    font-size:.82rem;
     font-weight:700;
-    color:var(--ink);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--text-2);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .glass-title .ico{
+    font-size:1rem;
+    filter:drop-shadow(0 0 8px var(--cyan-glow));
+  }
+  .glass-title .idx{
+    font-family:var(--font-mono);
+    color:var(--cyan);
+    font-size:.7rem;
+    opacity:.7;
+  }
+
+  /* ============ METRIC CARDS ============ */
+  .metric{
     text-align:left;
-    transition:background .2s;
   }
-  .acc-head:hover{background:#fafbfc}
-
-  .acc-head .ico{
-    width:36px;height:36px;flex:none;
-    border-radius:10px;
-    background:var(--red-soft);
-    border:1px solid var(--red-line);
-    display:grid;place-items:center;
-    font-size:1.05rem;
-    transition:.3s;
+  .metric .val{
+    font-family:var(--font-display);
+    font-size:2.4rem;
+    font-weight:900;
+    line-height:1;
+    background:linear-gradient(135deg, var(--cyan-soft), var(--violet-soft));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:6px;
   }
-  .acc.open .acc-head .ico{
-    background:var(--red);
-    transform:rotate(-8deg) scale(1.05);
+  .metric .label{
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--text-3);
   }
-  .acc.open .acc-head .ico span{filter:brightness(0) invert(1)}
-
-  .acc-head .label{flex:1}
-  .acc-head .label small{
-    display:block;font-weight:500;color:var(--muted);
-    font-size:.82rem;margin-top:2px;
+  .metric.violet .val{
+    background:linear-gradient(135deg, var(--violet-soft), var(--pink));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   }
-
-  .acc-head .arrow{
-    width:24px;height:24px;flex:none;
-    display:grid;place-items:center;
-    color:var(--muted);
-    transition:transform .35s cubic-bezier(.16,1,.3,1);
+  .metric.lime .val{
+    background:linear-gradient(135deg, var(--lime), var(--cyan));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   }
-  .acc.open .acc-head .arrow{transform:rotate(180deg);color:var(--red)}
-
-  .acc-body{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .45s cubic-bezier(.16,1,.3,1), opacity .3s;
-    opacity:0;
-  }
-  .acc.open .acc-body{
-    max-height:2000px;
-    opacity:1;
-  }
-  .acc-inner{
-    padding:0 20px 20px;
-    border-top:1px solid var(--line);
-    margin-top:0;
-    padding-top:18px;
+  .metric.amber .val{
+    background:linear-gradient(135deg, var(--amber), var(--pink));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   }
 
-  /* ============ INFO ROWS ============ */
-  .rows{display:flex;flex-direction:column;gap:0}
-  .row{
-    display:flex;justify-content:space-between;gap:16px;
-    padding:12px 0;
-    border-bottom:1px solid var(--line);
-    font-size:.93rem;
+  /* ============ DATA ROWS ============ */
+  .drow{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
+    font-size:.92rem;
     align-items:flex-start;
-  }
-  .row:last-child{border-bottom:none}
-  .row .k{font-weight:600;color:var(--ink);flex:none;max-width:55%}
-  .row .v{text-align:right;color:var(--ink-soft)}
-  @media(max-width:520px){
-    .row{flex-direction:column;gap:2px}
-    .row .k{max-width:100%}
-    .row .v{text-align:left}
-  }
-
-  /* ============ PERSON LIST ============ */
-  .people{display:grid;gap:10px}
-  .person{
-    display:flex;align-items:flex-start;gap:14px;
-    padding:14px 16px;
-    background:#fafbfc;
-    border:1px solid var(--line);
-    border-radius:12px;
     transition:.25s;
   }
-  .person:hover{
-    background:#fff;
-    border-color:var(--red-line);
-    transform:translateX(4px);
-    box-shadow:var(--shadow-sm);
+  .drow:last-child{border-bottom:none}
+  .drow:hover{padding-left:6px;border-bottom-color:var(--border-strong)}
+  .drow .k{
+    color:var(--text-3);
+    font-family:var(--font-mono);
+    font-size:.78rem;
+    letter-spacing:.03em;
+    flex:none;
+    max-width:52%;
+    padding-top:2px;
   }
-  .avatar{
-    width:38px;height:38px;flex:none;
-    border-radius:50%;
-    background:linear-gradient(135deg,var(--red),#fb7185);
-    color:#fff;
-    display:grid;place-items:center;
-    font-weight:700;font-size:.85rem;
-    letter-spacing:.02em;
+  .drow .v{
+    color:var(--text);
+    text-align:right;
+    font-weight:500;
   }
-  .person .info{flex:1;min-width:0}
-  .person .name{font-weight:700;color:var(--ink);font-size:.94rem}
-  .person .role{font-size:.83rem;color:var(--muted);margin-top:2px;line-height:1.5}
-  .person a{
-    display:inline-block;
-    margin-top:6px;
-    font-size:.82rem;
-    color:var(--red);
-    text-decoration:none;
+  @media(max-width:560px){
+    .drow{flex-direction:column;gap:4px}
+    .drow .k{max-width:100%}
+    .drow .v{text-align:left}
+  }
+
+  /* ============ STATUS PILLS ============ */
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 11px;
+    border-radius:999px;
+    font-family:var(--font-mono);
+    font-size:.68rem;
     font-weight:600;
-    word-break:break-all;
-    transition:.2s;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    border:1px solid;
   }
-  .person a:hover{text-decoration:underline;color:#be123c}
+  .pill .pdot{
+    width:5px;height:5px;border-radius:50%;
+  }
+  .pill.ok{
+    color:var(--lime);
+    background:rgba(163,230,53,.08);
+    border-color:rgba(163,230,53,.3);
+  }
+  .pill.ok .pdot{background:var(--lime);box-shadow:0 0 6px var(--lime)}
+  .pill.no{
+    color:var(--red);
+    background:rgba(244,63,94,.08);
+    border-color:rgba(244,63,94,.3);
+  }
+  .pill.no .pdot{background:var(--red);box-shadow:0 0 6px var(--red)}
+  .pill.soon{
+    color:var(--amber);
+    background:rgba(251,191,36,.08);
+    border-color:rgba(251,191,36,.3);
+  }
+  .pill.soon .pdot{background:var(--amber);box-shadow:0 0 6px var(--amber);animation:blip 1.5s infinite}
+  .pill.neutral{
+    color:var(--text-3);
+    background:rgba(120,200,255,.04);
+    border-color:var(--border);
+  }
+
+  /* ============ ALERT ============ */
+  .alert{
+    border-radius:var(--radius);
+    padding:20px 24px 20px 60px;
+    position:relative;
+    font-size:.92rem;
+    border:1px solid;
+    margin-bottom:20px;
+    backdrop-filter:blur(10px);
+    transition:.3s;
+  }
+  .alert:hover{transform:translateY(-2px)}
+  .alert::before{
+    position:absolute;
+    left:22px;top:50%;
+    transform:translateY(-50%);
+    font-size:1.3rem;
+    line-height:1;
+  }
+  .alert.warn{
+    background:linear-gradient(135deg, rgba(251,191,36,.08), rgba(251,191,36,.02));
+    border-color:rgba(251,191,36,.3);
+    color:#fde68a;
+    box-shadow:0 0 30px rgba(251,191,36,.08);
+  }
+  .alert.warn::before{content:"⚠"}
+  .alert.info{
+    background:linear-gradient(135deg, rgba(34,211,238,.08), rgba(34,211,238,.02));
+    border-color:rgba(34,211,238,.3);
+    color:var(--cyan-soft);
+    box-shadow:0 0 30px rgba(34,211,238,.08);
+  }
+  .alert.info::before{content:"◈";color:var(--cyan)}
+  .alert.ok{
+    background:linear-gradient(135deg, rgba(163,230,53,.08), rgba(163,230,53,.02));
+    border-color:rgba(163,230,53,.3);
+    color:#d9f99d;
+    box-shadow:0 0 30px rgba(163,230,53,.06);
+  }
+  .alert.ok::before{content:"✓";color:var(--lime)}
+  .alert strong{color:#fff;font-weight:600}
 
   /* ============ RULE LIST ============ */
-  .rules{list-style:none;counter-reset:r;display:flex;flex-direction:column;gap:10px}
+  .rules{
+    list-style:none;
+    display:grid;
+    gap:10px;
+  }
   .rules li{
     counter-increment:r;
     position:relative;
-    padding:14px 16px 14px 54px;
-    background:#fafbfc;
-    border:1px solid var(--line);
-    border-radius:12px;
-    font-size:.93rem;
-    transition:.25s;
+    padding:16px 20px 16px 64px;
+    background:rgba(34,211,238,.03);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    font-size:.92rem;
+    transition:.3s cubic-bezier(.16,1,.3,1);
+    overflow:hidden;
   }
-  .rules li:hover{
-    background:#fff;
-    border-color:var(--red-line);
-    transform:translateX(4px);
-    box-shadow:var(--shadow-sm);
-  }
+  .rules{counter-reset:r}
   .rules li::before{
-    content:counter(r);
+    content:counter(r,decimal-leading-zero);
     position:absolute;
-    left:14px;top:13px;
-    width:28px;height:28px;
-    border-radius:50%;
-    background:var(--red);
-    color:#fff;
-    display:grid;place-items:center;
-    font-weight:700;font-size:.82rem;
-    box-shadow:0 2px 6px rgba(225,29,72,.3);
+    left:18px;top:50%;
+    transform:translateY(-50%);
+    font-family:var(--font-display);
+    font-size:1rem;
+    font-weight:700;
+    color:var(--cyan);
+    letter-spacing:-.02em;
+    text-shadow:0 0 12px var(--cyan-glow);
   }
-  .rules strong{color:var(--ink);font-weight:700}
-
-  /* ============ BULLET LIST ============ */
-  .bullets{list-style:none;display:flex;flex-direction:column;gap:8px}
-  .bullets li{
-    position:relative;
-    padding:6px 0 6px 26px;
-    font-size:.93rem;
-  }
-  .bullets li::before{
+  .rules li::after{
     content:"";
     position:absolute;
-    left:6px;top:15px;
+    left:52px;top:16px;bottom:16px;
+    width:1px;
+    background:linear-gradient(180deg, transparent, var(--border-strong), transparent);
+  }
+  .rules li:hover{
+    background:rgba(34,211,238,.06);
+    border-color:var(--border-strong);
+    transform:translateX(6px);
+    box-shadow:0 0 30px rgba(34,211,238,.1);
+  }
+  .rules strong{color:#fff;font-weight:600}
+
+  /* ============ BRAND GRID ============ */
+  .brand-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
+    gap:10px;
+  }
+  .brand-tile{
+    padding:16px 18px;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--border);
+    background:rgba(34,211,238,.03);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    transition:.3s cubic-bezier(.16,1,.3,1);
+    cursor:default;
+  }
+  .brand-tile:hover{
+    border-color:var(--cyan);
+    background:rgba(34,211,238,.08);
+    transform:translateY(-3px);
+    box-shadow:0 8px 24px rgba(34,211,238,.15);
+  }
+  .brand-tile .bullet{
     width:8px;height:8px;
-    border-radius:50%;
-    background:var(--red);
-    transition:.25s;
+    border-radius:2px;
+    background:var(--cyan);
+    box-shadow:0 0 8px var(--cyan);
+    transform:rotate(45deg);
+    flex:none;
   }
-  .bullets li:hover::before{
-    transform:scale(1.4);
-    box-shadow:0 0 0 4px rgba(225,29,72,.12);
+  .brand-tile .name{
+    font-family:var(--font-display);
+    font-size:.86rem;
+    font-weight:600;
+    letter-spacing:.04em;
+    color:#fff;
   }
-  .bullets strong{color:var(--ink);font-weight:700}
+  .brand-tile.soon{
+    border-color:rgba(251,191,36,.3);
+    background:rgba(251,191,36,.04);
+  }
+  .brand-tile.soon .bullet{background:var(--amber);box-shadow:0 0 8px var(--amber)}
 
-  /* ============ BADGES ============ */
-  .badge{
-    display:inline-block;
-    padding:3px 10px;
-    border-radius:999px;
-    font-size:.72rem;
+  /* ============ PEOPLE GRID ============ */
+  .people-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:14px;
+  }
+  .person{
+    background:rgba(34,211,238,.03);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    padding:18px;
+    display:flex;
+    gap:14px;
+    transition:.35s cubic-bezier(.16,1,.3,1);
+    position:relative;
+    overflow:hidden;
+  }
+  .person::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:3px;height:0;
+    background:linear-gradient(180deg, var(--cyan), var(--violet));
+    transition:height .4s cubic-bezier(.16,1,.3,1);
+  }
+  .person:hover{
+    border-color:var(--border-strong);
+    background:rgba(34,211,238,.06);
+    transform:translateY(-4px);
+    box-shadow:0 16px 32px rgba(0,0,0,.4), 0 0 30px rgba(34,211,238,.08);
+  }
+  .person:hover::before{height:100%}
+
+  .avatar{
+    width:46px;height:46px;
+    flex:none;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    font-family:var(--font-display);
+    font-size:.88rem;
     font-weight:700;
-    letter-spacing:.03em;
-    text-transform:uppercase;
-    vertical-align:middle;
+    letter-spacing:-.02em;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
   }
-  .badge.open{background:var(--green-soft);color:var(--green);border:1px solid #a7f3d0}
-  .badge.closed{background:var(--red-soft);color:var(--red);border:1px solid var(--red-line)}
-  .badge.soon{background:var(--amber-soft);color:var(--amber);border:1px solid #fde68a}
+  .avatar.c1{background:linear-gradient(135deg,#22d3ee,#0891b2); box-shadow:0 0 20px rgba(34,211,238,.35)}
+  .avatar.c2{background:linear-gradient(135deg,#a855f7,#7e22ce); box-shadow:0 0 20px rgba(168,85,247,.35)}
+  .avatar.c3{background:linear-gradient(135deg,#ec4899,#be185d); box-shadow:0 0 20px rgba(236,72,153,.35)}
+  .avatar.c4{background:linear-gradient(135deg,#a3e635,#65a30d); box-shadow:0 0 20px rgba(163,230,53,.3)}
+  .avatar.c5{background:linear-gradient(135deg,#fbbf24,#d97706); box-shadow:0 0 20px rgba(251,191,36,.3)}
+  .avatar.c6{background:linear-gradient(135deg,#f43f5e,#be123c); box-shadow:0 0 20px rgba(244,63,94,.3)}
 
-  /* ============ EMAIL ============ */
-  code.mail{
-    background:#f3f4f6;
-    border:1px solid var(--line);
+  .person-info{flex:1;min-width:0}
+  .person-name{
+    font-family:var(--font-display);
+    font-size:.92rem;
+    font-weight:600;
+    color:#fff;
+    letter-spacing:.01em;
+    margin-bottom:4px;
+  }
+  .person-role{
+    font-size:.8rem;
+    color:var(--text-3);
+    line-height:1.5;
+    margin-bottom:8px;
+  }
+  .person-mail{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    color:var(--cyan);
+    text-decoration:none;
+    padding:4px 10px;
+    border:1px solid rgba(34,211,238,.25);
     border-radius:6px;
-    padding:1px 7px;
-    font-size:.85em;
-    color:var(--ink);
+    background:rgba(34,211,238,.05);
+    transition:.25s;
     word-break:break-all;
-    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  .person-mail:hover{
+    background:rgba(34,211,238,.15);
+    border-color:var(--cyan);
+    box-shadow:0 0 16px rgba(34,211,238,.2);
+  }
+
+  /* ============ EMAIL INLINE ============ */
+  code.mail{
+    font-family:var(--font-mono);
+    font-size:.78em;
+    color:var(--cyan-soft);
+    background:rgba(34,211,238,.07);
+    border:1px solid rgba(34,211,238,.18);
+    border-radius:5px;
+    padding:2px 7px;
+    word-break:break-all;
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline{
+    display:flex;
+    gap:16px;
+    position:relative;
+    padding-left:8px;
+  }
+  .tl-item{
+    flex:1;
+    padding:18px;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--border);
+    background:rgba(34,211,238,.03);
+    position:relative;
+    transition:.3s;
+  }
+  .tl-item:hover{
+    border-color:var(--border-strong);
+    background:rgba(34,211,238,.06);
+    transform:translateY(-3px);
+  }
+  .tl-item .tl-time{
+    font-family:var(--font-display);
+    font-size:1.1rem;
+    font-weight:700;
+    color:var(--cyan);
+    text-shadow:0 0 16px var(--cyan-glow);
+    letter-spacing:-.01em;
+    margin-bottom:6px;
+  }
+  .tl-item .tl-label{
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--text-3);
+  }
+  @media(max-width:640px){
+    .timeline{flex-direction:column}
   }
 
   /* ============ FOOTER ============ */
   footer{
-    border-top:1px solid var(--line);
-    background:#fff;
-    padding:28px 20px;
+    border-top:1px solid var(--border);
+    background:rgba(5,7,13,.9);
+    padding:32px 24px;
+    position:relative;
   }
-  footer .inner{
-    max-width:820px;margin:0 auto;
-    display:flex;justify-content:space-between;
-    align-items:center;gap:16px;flex-wrap:wrap;
-    font-size:.85rem;color:var(--muted);
+  footer::before{
+    content:"";
+    position:absolute;
+    top:0;left:50%;
+    transform:translateX(-50%);
+    width:200px;height:1px;
+    background:linear-gradient(90deg, transparent, var(--cyan), transparent);
+    box-shadow:0 0 20px var(--cyan);
   }
-  footer strong{color:var(--ink)}
-
-  .print-btn{
-    background:var(--ink);
+  .footer-inner{
+    max-width:1280px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .footer-left{
+    font-size:.85rem;
+    color:var(--text-3);
+    line-height:1.7;
+  }
+  .footer-left strong{
+    font-family:var(--font-display);
     color:#fff;
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+  .print-btn{
+    background:linear-gradient(135deg, var(--cyan), var(--violet));
+    color:#05070d;
     border:none;
     border-radius:10px;
-    padding:10px 20px;
-    font-size:.85rem;
-    font-weight:600;
+    padding:11px 22px;
+    font-family:var(--font-display);
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
     cursor:pointer;
-    font-family:inherit;
-    transition:.25s;
-    display:inline-flex;align-items:center;gap:8px;
+    transition:.3s cubic-bezier(.16,1,.3,1);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    box-shadow:0 0 24px rgba(34,211,238,.3);
   }
   .print-btn:hover{
-    background:var(--red);
     transform:translateY(-2px);
-    box-shadow:0 6px 16px rgba(225,29,72,.3);
+    box-shadow:0 0 40px rgba(34,211,238,.5), 0 8px 24px rgba(0,0,0,.4);
   }
 
   /* ============ TOP BUTTON ============ */
   .top-btn{
-    position:fixed;right:20px;bottom:20px;z-index:60;
-    width:46px;height:46px;
-    border-radius:50%;
-    background:var(--ink);
-    color:#fff;
-    border:none;
-    font-size:1.1rem;
+    position:fixed;
+    right:24px;bottom:24px;
+    z-index:60;
+    width:48px;height:48px;
+    border-radius:12px;
+    background:rgba(10,14,26,.85);
+    backdrop-filter:blur(10px);
+    color:var(--cyan);
+    border:1px solid var(--cyan);
+    font-size:1.2rem;
     cursor:pointer;
-    box-shadow:0 8px 24px rgba(17,24,39,.25);
+    box-shadow:0 0 24px rgba(34,211,238,.3);
     opacity:0;pointer-events:none;
     transform:translateY(16px);
     transition:.35s cubic-bezier(.16,1,.3,1);
   }
   .top-btn.show{opacity:1;pointer-events:auto;transform:translateY(0)}
-  .top-btn:hover{background:var(--red);transform:translateY(-3px)}
+  .top-btn:hover{
+    background:var(--cyan);
+    color:#05070d;
+    box-shadow:0 0 40px rgba(34,211,238,.6);
+  }
+
+  /* ============ CORNER DECORATIONS ============ */
+  .corners{
+    position:relative;
+  }
+  .corners::before,
+  .corners::after{
+    content:"";
+    position:absolute;
+    width:14px;height:14px;
+    border-color:var(--cyan);
+    border-style:solid;
+    opacity:.5;
+    pointer-events:none;
+  }
+  .corners::before{
+    top:8px;left:8px;
+    border-width:1px 0 0 1px;
+  }
+  .corners::after{
+    bottom:8px;right:8px;
+    border-width:0 1px 1px 0;
+  }
+
+  /* ============ SCROLLBAR ============ */
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:var(--bg-0)}
+  ::-webkit-scrollbar-thumb{
+    background:linear-gradient(180deg, var(--cyan), var(--violet));
+    border-radius:10px;
+    border:2px solid var(--bg-0);
+  }
+  ::-webkit-scrollbar-thumb:hover{background:var(--cyan)}
 
   /* ============ MOBILE ============ */
   @media(max-width:640px){
-    main{padding:28px 16px 70px}
-    .hero{padding:40px 16px 48px}
-    .nav .inner{padding:10px 16px}
-    .card{padding:18px 18px}
-    .acc-head{padding:16px}
-    .acc-inner{padding:16px}
-    .rules li{padding:12px 14px 12px 50px}
+    main{padding:36px 16px 80px}
+    .hero{padding:50px 16px 40px}
+    section{margin-bottom:56px}
+    .glass{padding:18px}
+    .alert{padding:16px 18px 16px 50px}
+    .alert::before{left:18px;font-size:1.1rem}
+    .status-inner,.nav-inner{padding:10px 16px}
   }
 
   /* ============ PRINT ============ */
   @media print{
-    body{background:#fff;font-size:11pt}
-    .hero{background:#fff;color:#000;padding:0 0 20px}
-    .hero::before,.hero::after{display:none}
-    .hero h1{color:#000}
-    .hero p{color:#333}
-    .chip{background:none;border:1px solid #999;color:#000}
-    .badge-top{background:none;border:1px solid #999;color:#000}
-    .nav,.top-btn,.print-btn{display:none !important}
-    main{max-width:none;padding:0}
-    .acc-body{max-height:none !important;opacity:1 !important}
-    .acc-head .arrow{display:none}
-    .acc{page-break-inside:avoid;border:1px solid #ccc;box-shadow:none}
+    body{background:#fff;color:#000}
+    body::before,body::after{display:none}
+    .hero{background:#fff;color:#000;padding:0 0 20px;border-bottom:2px solid #000}
+    .hero h1{color:#000;-webkit-text-fill-color:#000}
+    .hero p.sub{color:#333}
+    .chip{background:#f5f5f5;border:1px solid #ccc;color:#000}
+    .status-bar,.nav,.top-btn,.print-btn{display:none !important}
+    .glass,.alert,.rules li,.person,.brand-tile,.tl-item{
+      background:#f9f9f9 !important;
+      border:1px solid #ccc !important;
+      color:#000 !important;
+      box-shadow:none !important;
+    }
+    .sec-num{-webkit-text-stroke:1px #999;color:#ddd}
+    .metric .val,.person-name,.sec-title h2,.rules strong,.alert strong{
+      color:#000 !important;-webkit-text-fill-color:#000 !important;
+    }
     .reveal{opacity:1 !important;transform:none !important}
+    main{max-width:none;padding:0}
     section{page-break-inside:avoid;margin-bottom:22px}
-    .card,.callout{box-shadow:none}
     a{color:#000;text-decoration:none}
   }
 </style>
@@ -555,460 +1012,509 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero">
-  <div class="inner">
-    <div class="badge-top">
-      <span class="dot"></span>
-      Internal Operating Guide
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="blip"></span>
+      Command Center · v2.0
     </div>
-    <h1>Nissan Mthatha — Rules &amp; Info</h1>
-    <p>Everything you need to know about bookings, service, parts and who to contact — all in one simple place.</p>
-    <div class="brand-chips">
-      <span class="chip">Nissan</span>
-      <span class="chip">Datsun</span>
-      <span class="chip">Renault</span>
-      <span class="chip">GWM</span>
-      <span class="chip">Haval</span>
-      <span class="chip hot">Foton · coming soon</span>
+    <h1>Nissan Mthatha<br>Operations Hub</h1>
+    <p class="sub">
+      Every rule, contact and procedure — engineered for speed. Bookings, workshop, parts and
+      communication protocols in one unified interface.
+    </p>
+    <div class="chips">
+      <span class="chip"><span class="dot"></span>Nissan</span>
+      <span class="chip"><span class="dot"></span>Datsun</span>
+      <span class="chip"><span class="dot"></span>Renault</span>
+      <span class="chip"><span class="dot"></span>GWM</span>
+      <span class="chip"><span class="dot"></span>Haval</span>
+      <span class="chip soon"><span class="dot"></span>Foton · Soon</span>
     </div>
   </div>
 </header>
 
+<!-- ============ STATUS BAR ============ -->
+<div class="status-bar">
+  <div class="status-inner">
+    <div class="status-item"><span class="dot"></span>WEEKDAY OPS · OPEN</div>
+    <div class="status-sep"></div>
+    <div class="status-item"><span class="dot"></span>BOOK-IN · 07:00–10:00</div>
+    <div class="status-sep"></div>
+    <div class="status-item warn"><span class="dot"></span>SATURDAY · CLOSED</div>
+    <div class="status-sep"></div>
+    <div class="status-item"><span class="dot"></span>NISSAN 30 · RENAULT 15</div>
+    <div class="status-sep"></div>
+    <div class="status-item warn"><span class="dot"></span>FOTON · INBOUND</div>
+  </div>
+</div>
+
 <!-- ============ NAV ============ -->
 <nav class="nav" aria-label="Section navigation">
-  <div class="inner">
-    <a href="#start">Start Here</a>
-    <a href="#hours">Hours</a>
-    <a href="#bookings">Bookings</a>
-    <a href="#workshop">Workshop</a>
-    <a href="#parts">Parts</a>
-    <a href="#comms">Communication</a>
-    <a href="#money">Invoicing</a>
-    <a href="#people">Contacts</a>
+  <div class="nav-inner">
+    <a href="#overview">01 · Overview</a>
+    <a href="#hours">02 · Hours</a>
+    <a href="#bookings">03 · Bookings</a>
+    <a href="#workshop">04 · Workshop</a>
+    <a href="#parts">05 · Parts</a>
+    <a href="#comms">06 · Comms</a>
+    <a href="#invoicing">07 · Invoicing</a>
+    <a href="#contacts">08 · Contacts</a>
   </div>
 </nav>
 
 <main>
 
-  <!-- ============ 1. START HERE ============ -->
-  <section id="start">
-    <div class="section-head reveal">
-      <div class="section-icon"><span>📍</span></div>
-      <h2>Start Here</h2>
-    </div>
-    <p class="section-sub reveal">The basics — where we are and what we service.</p>
-
-    <div class="callout warn reveal">
-      <strong>Foton is coming.</strong> Until further notice, if a customer wants to book a Foton
-      for service, <strong>take a message and pass it to the Booking Clerk</strong>. Don't book it.
-    </div>
-
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>🚗</span></span>
-        <span class="label">Brands we service
-          <small>Nissan, Datsun, Renault, GWM &amp; Haval</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <ul class="bullets">
-            <li><strong>Nissan</strong> — full workshop support</li>
-            <li><strong>Datsun</strong> — service &amp; minor repairs</li>
-            <li><strong>Renault</strong> — full workshop support</li>
-            <li><strong>GWM</strong> — service &amp; minor repairs</li>
-            <li><strong>Haval</strong> — service &amp; minor repairs</li>
-          </ul>
+  <!-- ============ 01 OVERVIEW ============ -->
+  <section id="overview">
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="sec-num">01</div>
+        <div class="sec-title">
+          <h2>Overview</h2>
+          <p>Who we are and what we service</p>
         </div>
       </div>
+      <span class="sec-tag">SYSTEM · ONLINE</span>
     </div>
 
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>🏢</span></span>
-        <span class="label">Where to find us
-          <small>N2 Hillcrest Shopping Centre, Mthatha</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <div class="rows">
-            <div class="row"><span class="k">Address</span><span class="v">N2 Hillcrest Shopping Centre, Hillcrest, Mthatha, 5100</span></div>
-            <div class="row"><span class="k">Booking assistance</span><span class="v">Service &amp; minor repairs — Nissan, Datsun, Renault, GWM, Haval</span></div>
-          </div>
+    <div class="alert warn reveal">
+      <strong>Foton inbound.</strong> Until the brand goes live, if a customer wants to book a
+      Foton service, take a message and pass it to the Booking Clerk — do not book the vehicle.
+    </div>
+
+    <div class="bento">
+      <div class="glass col-8 reveal corners">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◈</span>Active Brands <span class="idx">[05 + 1]</span></div>
         </div>
+        <div class="brand-grid">
+          <div class="brand-tile"><span class="bullet"></span><span class="name">NISSAN</span></div>
+          <div class="brand-tile"><span class="bullet"></span><span class="name">DATSUN</span></div>
+          <div class="brand-tile"><span class="bullet"></span><span class="name">RENAULT</span></div>
+          <div class="brand-tile"><span class="bullet"></span><span class="name">GWM</span></div>
+          <div class="brand-tile"><span class="bullet"></span><span class="name">HAVAL</span></div>
+          <div class="brand-tile soon"><span class="bullet"></span><span class="name">FOTON</span></div>
+        </div>
+      </div>
+
+      <div class="glass col-4 reveal">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◉</span>Location</div>
+        </div>
+        <div class="drow">
+          <span class="k">SITE</span>
+          <span class="v">N2 Hillcrest Shopping Centre</span>
+        </div>
+        <div class="drow">
+          <span class="k">AREA</span>
+          <span class="v">Hillcrest, Mthatha</span>
+        </div>
+        <div class="drow">
+          <span class="k">POSTAL</span>
+          <span class="v">5100</span>
+        </div>
+      </div>
+
+      <div class="glass col-12 reveal">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◆</span>Booking Assistance Scope</div>
+        </div>
+        <p style="font-size:.93rem;color:var(--text-2);margin:0">
+          <strong style="color:#fff">Service &amp; Minor Repairs</strong> — Nissan, Datsun, Renault, GWM and Haval.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 2. HOURS ============ -->
+  <!-- ============ 02 HOURS ============ -->
   <section id="hours">
-    <div class="section-head reveal">
-      <div class="section-icon"><span>🕐</span></div>
-      <h2>Operating Hours</h2>
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="sec-num">02</div>
+        <div class="sec-title">
+          <h2>Operating Hours</h2>
+          <p>Weekday operations · Saturday closed</p>
+        </div>
+      </div>
+      <span class="sec-tag">MON — FRI · LIVE</span>
     </div>
-    <p class="section-sub reveal">Weekdays open — Saturdays closed.</p>
 
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>📅</span></span>
-        <span class="label">Weekdays
-          <small>Open · book-in 07:00 – 10:00</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <div class="rows">
-            <div class="row"><span class="k">Workshop capacity</span><span class="v">Renault <strong>15</strong> · Nissan <strong>30</strong></span></div>
-            <div class="row"><span class="k">Book-in times</span><span class="v"><strong>07:00 – 10:00</strong></span></div>
-            <div class="row"><span class="k">Shuttle service</span><span class="v">Yes — <strong>Town Only</strong></span></div>
-            <div class="row"><span class="k">Afternoon drop-offs</span><span class="v"><span class="badge closed">No</span></span></div>
-            <div class="row"><span class="k">Booking assistance</span><span class="v">Service &amp; minor repairs for all 5 brands</span></div>
+    <div class="bento">
+      <div class="glass col-6 reveal corners">
+        <div class="glass-head">
+          <div class="glass-title">
+            <span class="ico">◐</span>Weekdays
+            <span class="pill ok" style="margin-left:auto"><span class="pdot"></span>Open</span>
+          </div>
+        </div>
+        <div class="drow"><span class="k">WORKSHOP</span><span class="v">Renault <strong style="color:#fff">15</strong> · Nissan <strong style="color:#fff">30</strong></span></div>
+        <div class="drow"><span class="k">BOOK-IN</span><span class="v"><strong style="color:var(--cyan)">07:00 — 10:00</strong></span></div>
+        <div class="drow"><span class="k">SHUTTLE</span><span class="v">Town Only</span></div>
+        <div class="drow"><span class="k">AFTERNOON DROP</span><span class="v"><span class="pill no"><span class="pdot"></span>No</span></span></div>
+        <div class="drow"><span class="k">BOOKINGS</span><span class="v">Service &amp; Minor Repairs</span></div>
+      </div>
+
+      <div class="glass col-6 reveal">
+        <div class="glass-head">
+          <div class="glass-title">
+            <span class="ico">◑</span>Saturday
+            <span class="pill no" style="margin-left:auto"><span class="pdot"></span>Closed</span>
+          </div>
+        </div>
+        <div class="drow"><span class="k">WORKSHOP</span><span class="v">Closed</span></div>
+        <div class="drow"><span class="k">BOOK-IN</span><span class="v">Closed</span></div>
+        <div class="drow"><span class="k">SHUTTLE</span><span class="v">Closed</span></div>
+        <div class="drow"><span class="k">AFTERNOON DROP</span><span class="v">Closed</span></div>
+        <div class="drow"><span class="k">BOOKINGS</span><span class="v">Closed</span></div>
+      </div>
+
+      <div class="glass col-12 reveal">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◈</span>Book-In Window</div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">07:00</div>
+            <div class="tl-label">Window Opens</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">10:00</div>
+            <div class="tl-label">Window Closes</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">Sat → Mon</div>
+            <div class="tl-label">Central can book Monday</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>🛑</span></span>
-        <span class="label">Saturdays
-          <small>Closed — no bookings, no shuttles</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <div class="rows">
-            <div class="row"><span class="k">Workshop</span><span class="v"><span class="badge closed">Closed</span></span></div>
-            <div class="row"><span class="k">Book-in times</span><span class="v">Closed</span></div>
-            <div class="row"><span class="k">Shuttle service</span><span class="v">Closed</span></div>
-            <div class="row"><span class="k">Afternoon drop-offs</span><span class="v">Closed</span></div>
-            <div class="row"><span class="k">Booking assistance</span><span class="v">Closed</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="callout info reveal">
-      <strong>Saturday exception:</strong> if a client calls on Saturday, Central can still
-      book them in for <strong>Monday</strong>.
+    <div class="alert info reveal" style="margin-top:20px">
+      <strong>Saturday exception:</strong> Central can still assist with a <strong>Monday booking</strong>
+      when a client calls in on Saturday.
     </div>
   </section>
 
-  <!-- ============ 3. BOOKINGS ============ -->
+  <!-- ============ 03 BOOKINGS ============ -->
   <section id="bookings">
-    <div class="section-head reveal">
-      <div class="section-icon"><span>📝</span></div>
-      <h2>Booking Rules</h2>
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="sec-num">03</div>
+        <div class="sec-title">
+          <h2>Booking Rules</h2>
+          <p>Non-negotiable operating procedures</p>
+        </div>
+      </div>
+      <span class="sec-tag">MANDATORY</span>
     </div>
-    <p class="section-sub reveal">Follow these every time — no exceptions.</p>
 
-    <div class="card reveal">
+    <div class="glass reveal corners">
+      <div class="glass-head">
+        <div class="glass-title"><span class="ico">▣</span>Booking Protocol <span class="idx">[08 RULES]</span></div>
+      </div>
       <ol class="rules">
         <li><strong>Book 3 days in advance.</strong> No same-day or next-day bookings.</li>
-        <li><strong>Book-in window is 07:00 – 10:00</strong> on weekdays only.</li>
-        <li><strong>No afternoon drop-offs.</strong> Late arrivals can't be accepted.</li>
-        <li><strong>No Saturday bookings.</strong> Workshop and booking desk are closed.</li>
-        <li><strong>Saturday → Monday:</strong> Central can assist with Monday bookings when a client calls on Saturday.</li>
-        <li><strong>Foton requests:</strong> take a message and pass it to the Booking Clerk — don't book.</li>
-        <li><strong>Confirmations go to:</strong> Sichulumancile MATYOLO, Naledi Mayekiso, Yaleka Dinana, Lwazi Nenemba.</li>
+        <li><strong>Book-in window 07:00 – 10:00</strong> on weekdays only.</li>
+        <li><strong>No afternoon drop-offs.</strong> Late arrivals cannot be accepted.</li>
+        <li><strong>No Saturday bookings.</strong> Workshop and desk are closed.</li>
+        <li><strong>Saturday → Monday:</strong> Central can assist with Monday bookings.</li>
+        <li><strong>Foton requests:</strong> take a message, pass to Booking Clerk — do not book.</li>
+        <li><strong>Confirmations to:</strong> Sichulumancile MATYOLO, Naledi Mayekiso, Yaleka Dinana, Lwazi Nenemba.</li>
         <li><strong>Always CC the manager</strong> on escalations and bookings.</li>
       </ol>
     </div>
   </section>
 
-  <!-- ============ 4. WORKSHOP ============ -->
+  <!-- ============ 04 WORKSHOP ============ -->
   <section id="workshop">
-    <div class="section-head reveal">
-      <div class="section-icon"><span>🔧</span></div>
-      <h2>Workshop &amp; Service</h2>
-    </div>
-    <p class="section-sub reveal">Capacity, shuttles and who handles which brand.</p>
-
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>🏭</span></span>
-        <span class="label">Capacity &amp; logistics
-          <small>Nissan 30 · Renault 15 · Town shuttle only</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <div class="rows">
-            <div class="row"><span class="k">Nissan capacity</span><span class="v"><strong>30</strong> vehicles</span></div>
-            <div class="row"><span class="k">Renault capacity</span><span class="v"><strong>15</strong> vehicles</span></div>
-            <div class="row"><span class="k">Shuttle service</span><span class="v">Offered — <strong>Town Only</strong></span></div>
-            <div class="row"><span class="k">Afternoon drop-offs</span><span class="v">Not available</span></div>
-          </div>
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="sec-num">04</div>
+        <div class="sec-title">
+          <h2>Workshop &amp; Service</h2>
+          <p>Capacity, shuttles and brand advisors</p>
         </div>
       </div>
+      <span class="sec-tag">BAY STATUS</span>
     </div>
 
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>👤</span></span>
-        <span class="label">Service advisors by brand
-          <small>Who to speak to for each make</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <div class="rows">
-            <div class="row"><span class="k">Nissan</span><span class="v">Nambita Tatubana</span></div>
-            <div class="row"><span class="k">Renault</span><span class="v">Linda Ntunge-Ndinisa</span></div>
-            <div class="row"><span class="k">Haval / GWM</span><span class="v">Nolan Gaehler</span></div>
-          </div>
+    <div class="bento">
+      <div class="glass col-3 reveal">
+        <div class="metric">
+          <div class="val">30</div>
+          <div class="label">Nissan Bays</div>
         </div>
       </div>
-    </div>
-
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>☎️</span></span>
-        <span class="label">Counter responsibilities
-          <small>Who handles which calls</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <ul class="bullets">
-            <li><strong>Yaleka Dinana</strong> — workshop counter, all service-related calls, Nissan workshop issues.</li>
-            <li><strong>Lwazi Nenemba</strong> — front counter, all non-service calls, fleet sales (non-workshop).</li>
-          </ul>
+      <div class="glass col-3 reveal">
+        <div class="metric violet">
+          <div class="val">15</div>
+          <div class="label">Renault Bays</div>
         </div>
+      </div>
+      <div class="glass col-3 reveal">
+        <div class="metric lime">
+          <div class="val">TOWN</div>
+          <div class="label">Shuttle Radius</div>
+        </div>
+      </div>
+      <div class="glass col-3 reveal">
+        <div class="metric amber">
+          <div class="val">NO</div>
+          <div class="label">Afternoon Drop</div>
+        </div>
+      </div>
+
+      <div class="glass col-12 reveal corners">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◈</span>Service Advisors by Brand</div>
+        </div>
+        <div class="drow"><span class="k">NISSAN</span><span class="v">Nambita Tatubana</span></div>
+        <div class="drow"><span class="k">RENAULT</span><span class="v">Linda Ntunge-Ndinisa</span></div>
+        <div class="drow"><span class="k">HAVAL / GWM</span><span class="v">Nolan Gaehler</span></div>
+      </div>
+
+      <div class="glass col-6 reveal">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◐</span>Workshop Counter</div>
+        </div>
+        <div class="drow"><span class="k">OWNER</span><span class="v">Yaleka Dinana</span></div>
+        <div class="drow"><span class="k">SCOPE</span><span class="v">All service-related calls · Nissan workshop</span></div>
+      </div>
+
+      <div class="glass col-6 reveal">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◑</span>Front Counter</div>
+        </div>
+        <div class="drow"><span class="k">OWNER</span><span class="v">Lwazi Nenemba</span></div>
+        <div class="drow"><span class="k">SCOPE</span><span class="v">Non-service calls · Fleet sales</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 5. PARTS ============ -->
+  <!-- ============ 05 PARTS ============ -->
   <section id="parts">
-    <div class="section-head reveal">
-      <div class="section-icon"><span>⚙️</span></div>
-      <h2>Parts Department</h2>
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="sec-num">05</div>
+        <div class="sec-title">
+          <h2>Parts Department</h2>
+          <p>Brand coverage &amp; counter ownership</p>
+        </div>
+      </div>
+      <span class="sec-tag">STOCK · 4 BRANDS</span>
     </div>
-    <p class="section-sub reveal">We stock and assist with four brands.</p>
 
-    <div class="callout ok reveal">
+    <div class="alert ok reveal">
       Parts support covers <strong>Nissan, Renault, Haval and GWM</strong>.
     </div>
 
-    <div class="card reveal">
-      <h3>🔑 Who helps with what</h3>
-      <div class="rows">
-        <div class="row">
-          <span class="k">Lwazi Nenemba</span>
-          <span class="v">All three brands · Renault, Haval &amp; GWM counter · Fleet sales</span>
+    <div class="bento">
+      <div class="glass col-6 reveal corners">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◈</span>Lwazi Nenemba</div>
         </div>
-        <div class="row">
-          <span class="k">Yaleka Dinana</span>
-          <span class="v">Nissan &amp; Renault parts · Nissan workshop issues</span>
+        <div class="drow"><span class="k">PARTS</span><span class="v">All three brands</span></div>
+        <div class="drow"><span class="k">COUNTER</span><span class="v">Renault · Haval · GWM</span></div>
+        <div class="drow"><span class="k">FLEET</span><span class="v">All non-workshop sales</span></div>
+      </div>
+
+      <div class="glass col-6 reveal">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◈</span>Yaleka Dinana</div>
         </div>
+        <div class="drow"><span class="k">PARTS</span><span class="v">Nissan · Renault</span></div>
+        <div class="drow"><span class="k">SCOPE</span><span class="v">Nissan workshop issues</span></div>
+        <div class="drow"><span class="k">COUNTER</span><span class="v">Workshop counter</span></div>
       </div>
     </div>
 
-    <div class="callout info reveal">
-      <strong>Reminder:</strong> CC the manager in on all callback messages.
+    <div class="alert info reveal" style="margin-top:20px">
+      <strong>Reminder:</strong> CC the manager on all callback messages.
     </div>
   </section>
 
-  <!-- ============ 6. COMMUNICATION ============ -->
+  <!-- ============ 06 COMMS ============ -->
   <section id="comms">
-    <div class="section-head reveal">
-      <div class="section-icon"><span>📧</span></div>
-      <h2>Communication</h2>
-    </div>
-    <p class="section-sub reveal">Where quotations, confirmations and callbacks go.</p>
-
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>💬</span></span>
-        <span class="label">Quotation requests
-          <small>Forward to three people</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <div class="rows">
-            <div class="row"><span class="k">Yaleka Dinana</span><span class="v"><code class="mail">ydinana@cfaomotors.co.za</code></span></div>
-            <div class="row"><span class="k">Lwazi Nenemba</span><span class="v"><code class="mail">lnenemba@cfaomotors.co.za</code></span></div>
-            <div class="row"><span class="k">Zanele Fadane</span><span class="v"><code class="mail">zfadana@cfaomotors.co.za</code></span></div>
-          </div>
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="sec-num">06</div>
+        <div class="sec-title">
+          <h2>Communication</h2>
+          <p>Routing for quotes, confirmations &amp; callbacks</p>
         </div>
       </div>
+      <span class="sec-tag">ROUTING</span>
     </div>
 
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>✅</span></span>
-        <span class="label">Booking confirmations
-          <small>Send to four people</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <div class="rows">
-            <div class="row"><span class="k">Sichulumancile MATYOLO</span><span class="v">—</span></div>
-            <div class="row"><span class="k">Naledi Mayekiso</span><span class="v"><code class="mail">nmayekiso@cfaomotors.co.za</code></span></div>
-            <div class="row"><span class="k">Yaleka Dinana</span><span class="v"><code class="mail">ydinana@cfaomotors.co.za</code></span></div>
-            <div class="row"><span class="k">Lwazi Nenemba</span><span class="v"><code class="mail">lnenemba@cfaomotors.co.za</code></span></div>
-          </div>
+    <div class="bento">
+      <div class="glass col-6 reveal corners">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">◆</span>Quotation Requests</div>
         </div>
+        <div class="drow"><span class="k">YALEKA</span><span class="v"><code class="mail">ydinana@cfaomotors.co.za</code></span></div>
+        <div class="drow"><span class="k">LWAZI</span><span class="v"><code class="mail">lnenemba@cfaomotors.co.za</code></span></div>
+        <div class="drow"><span class="k">ZANELE</span><span class="v"><code class="mail">zfadana@cfaomotors.co.za</code></span></div>
+      </div>
+
+      <div class="glass col-6 reveal">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">✓</span>Booking Confirmations</div>
+        </div>
+        <div class="drow"><span class="k">MATYOLO</span><span class="v">Sichulumancile</span></div>
+        <div class="drow"><span class="k">NALEDI</span><span class="v"><code class="mail">nmayekiso@cfaomotors.co.za</code></span></div>
+        <div class="drow"><span class="k">YALEKA</span><span class="v"><code class="mail">ydinana@cfaomotors.co.za</code></span></div>
+        <div class="drow"><span class="k">LWAZI</span><span class="v"><code class="mail">lnenemba@cfaomotors.co.za</code></span></div>
+      </div>
+
+      <div class="glass col-6 reveal">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">↻</span>Callback Requests</div>
+        </div>
+        <div class="drow"><span class="k">SEND TO</span><span class="v"><code class="mail">mthobei@cfaomotors.co.za</code><br><code class="mail">nmayekiso@cfaomotors.co.za</code></span></div>
+        <div class="drow"><span class="k">ALWAYS CC</span><span class="v">Everyone in department</span></div>
+      </div>
+
+      <div class="glass col-6 reveal">
+        <div class="glass-head">
+          <div class="glass-title"><span class="ico">⚠</span>Escalations &amp; Recalls</div>
+        </div>
+        <div class="drow"><span class="k">MANAGER CC</span><span class="v"><span class="pill ok"><span class="pdot"></span>Required</span></span></div>
+        <div class="drow"><span class="k">RECALLS</span><span class="v"><span class="pill neutral"><span class="pdot" style="background:var(--text-3);box-shadow:none"></span>None</span></span></div>
       </div>
     </div>
+  </section>
 
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>🔄</span></span>
-        <span class="label">Callback requests
-          <small>Send to Mthobei &amp; Naledi, CC everyone</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <div class="rows">
-            <div class="row"><span class="k">Send to</span><span class="v"><code class="mail">mthobei@cfaomotors.co.za</code><br><code class="mail">nmayekiso@cfaomotors.co.za</code></span></div>
-            <div class="row"><span class="k">Always CC</span><span class="v">Everyone in the department</span></div>
-          </div>
+  <!-- ============ 07 INVOICING ============ -->
+  <section id="invoicing">
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="sec-num">07</div>
+        <div class="sec-title">
+          <h2>Invoicing &amp; Refunds</h2>
+          <p>Who owns the money side</p>
         </div>
       </div>
+      <span class="sec-tag">FINANCE</span>
     </div>
 
-    <div class="acc reveal">
-      <button class="acc-head" aria-expanded="false">
-        <span class="ico"><span>⚠️</span></span>
-        <span class="label">Escalations &amp; recalls
-          <small>Manager CC required · no recalls</small>
-        </span>
-        <span class="arrow">▾</span>
-      </button>
-      <div class="acc-body">
-        <div class="acc-inner">
-          <div class="rows">
-            <div class="row"><span class="k">Manager on escalations</span><span class="v"><span class="badge open">Yes — always CC</span></span></div>
-            <div class="row"><span class="k">Recalls</span><span class="v"><span class="badge closed">None</span></span></div>
-          </div>
+    <div class="bento">
+      <div class="glass col-4 reveal">
+        <div class="metric">
+          <div class="val">DN</div>
+          <div class="label">Donnavan · Dept Invoicing</div>
+        </div>
+      </div>
+      <div class="glass col-4 reveal">
+        <div class="metric violet">
+          <div class="val">YD · LN</div>
+          <div class="label">Own Invoicing · Refer Issues to Manager</div>
+        </div>
+      </div>
+      <div class="glass col-4 reveal">
+        <div class="metric lime">
+          <div class="val">SALES</div>
+          <div class="label">Process Own Refunds</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 7. INVOICING ============ -->
-  <section id="money">
-    <div class="section-head reveal">
-      <div class="section-icon"><span>💰</span></div>
-      <h2>Invoicing &amp; Refunds</h2>
+  <!-- ============ 08 CONTACTS ============ -->
+  <section id="contacts">
+    <div class="sec-head reveal">
+      <div class="sec-head-left">
+        <div class="sec-num">08</div>
+        <div class="sec-title">
+          <h2>Key Contacts</h2>
+          <p>Directories for every role</p>
+        </div>
+      </div>
+      <span class="sec-tag">DIRECTORY</span>
     </div>
-    <p class="section-sub reveal">Who owns the money side.</p>
 
-    <div class="card reveal">
-      <ul class="bullets">
-        <li><strong>Donnavan</strong> handles invoicing in the department.</li>
-        <li><strong>Lwazi and Yaleka</strong> do their own invoicing — refer issues to the manager.</li>
-        <li><strong>Salesmen</strong> process their own refunds.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ 8. CONTACTS ============ -->
-  <section id="people">
-    <div class="section-head reveal">
-      <div class="section-icon"><span>👥</span></div>
-      <h2>Key Contacts</h2>
-    </div>
-    <p class="section-sub reveal">Everyone you might need to reach.</p>
-
-    <div class="people">
+    <div class="people-grid">
       <div class="person reveal">
-        <div class="avatar">YD</div>
-        <div class="info">
-          <div class="name">Yaleka Dinana</div>
-          <div class="role">Workshop counter · Nissan workshop issues · Nissan &amp; Renault parts · Own invoicing</div>
-          <a href="mailto:ydinana@cfaomotors.co.za">ydinana@cfaomotors.co.za</a>
+        <div class="avatar c1">YD</div>
+        <div class="person-info">
+          <div class="person-name">Yaleka Dinana</div>
+          <div class="person-role">Workshop counter · Nissan issues · Parts (Nissan / Renault) · Own invoicing</div>
+          <a class="person-mail" href="mailto:ydinana@cfaomotors.co.za">ydinana@cfaomotors.co.za</a>
         </div>
       </div>
 
       <div class="person reveal">
-        <div class="avatar">LN</div>
-        <div class="info">
-          <div class="name">Lwazi Nenemba</div>
-          <div class="role">Front counter · Renault, Haval &amp; GWM parts · Fleet sales · Non-service calls · Own invoicing</div>
-          <a href="mailto:lnenemba@cfaomotors.co.za">lnenemba@cfaomotors.co.za</a>
+        <div class="avatar c2">LN</div>
+        <div class="person-info">
+          <div class="person-name">Lwazi Nenemba</div>
+          <div class="person-role">Front counter · Parts (Renault / Haval / GWM) · Fleet sales · Non-service calls</div>
+          <a class="person-mail" href="mailto:lnenemba@cfaomotors.co.za">lnenemba@cfaomotors.co.za</a>
         </div>
       </div>
 
       <div class="person reveal">
-        <div class="avatar">ZF</div>
-        <div class="info">
-          <div class="name">Zanele Fadane</div>
-          <div class="role">Quotation email requests</div>
-          <a href="mailto:zfadana@cfaomotors.co.za">zfadana@cfaomotors.co.za</a>
+        <div class="avatar c3">ZF</div>
+        <div class="person-info">
+          <div class="person-name">Zanele Fadane</div>
+          <div class="person-role">Quotation email requests</div>
+          <a class="person-mail" href="mailto:zfadana@cfaomotors.co.za">zfadana@cfaomotors.co.za</a>
         </div>
       </div>
 
       <div class="person reveal">
-        <div class="avatar">NM</div>
-        <div class="info">
-          <div class="name">Naledi Mayekiso</div>
-          <div class="role">Booking confirmations · Callback requests</div>
-          <a href="mailto:nmayekiso@cfaomotors.co.za">nmayekiso@cfaomotors.co.za</a>
+        <div class="avatar c4">NM</div>
+        <div class="person-info">
+          <div class="person-name">Naledi Mayekiso</div>
+          <div class="person-role">Booking confirmations · Callback requests</div>
+          <a class="person-mail" href="mailto:nmayekiso@cfaomotors.co.za">nmayekiso@cfaomotors.co.za</a>
         </div>
       </div>
 
       <div class="person reveal">
-        <div class="avatar">MT</div>
-        <div class="info">
-          <div class="name">Mthobei</div>
-          <div class="role">Callback requests</div>
-          <a href="mailto:mthobei@cfaomotors.co.za">mthobei@cfaomotors.co.za</a>
+        <div class="avatar c5">MT</div>
+        <div class="person-info">
+          <div class="person-name">Mthobei</div>
+          <div class="person-role">Callback requests</div>
+          <a class="person-mail" href="mailto:mthobei@cfaomotors.co.za">mthobei@cfaomotors.co.za</a>
         </div>
       </div>
 
       <div class="person reveal">
-        <div class="avatar">SM</div>
-        <div class="info">
-          <div class="name">Sichulumancile MATYOLO</div>
-          <div class="role">Booking confirmations</div>
+        <div class="avatar c6">SM</div>
+        <div class="person-info">
+          <div class="person-name">Sichulumancile MATYOLO</div>
+          <div class="person-role">Booking confirmations</div>
         </div>
       </div>
 
       <div class="person reveal">
-        <div class="avatar">DN</div>
-        <div class="info">
-          <div class="name">Donavan</div>
-          <div class="role">Invoicing in the department · CC on directed callbacks</div>
+        <div class="avatar c1">DN</div>
+        <div class="person-info">
+          <div class="person-name">Donavan</div>
+          <div class="person-role">Department invoicing · CC on directed callbacks</div>
         </div>
       </div>
 
       <div class="person reveal">
-        <div class="avatar">NT</div>
-        <div class="info">
-          <div class="name">Nambita Tatubana</div>
-          <div class="role">Service Advisor — Nissan</div>
+        <div class="avatar c2">NT</div>
+        <div class="person-info">
+          <div class="person-name">Nambita Tatubana</div>
+          <div class="person-role">Service Advisor — Nissan</div>
         </div>
       </div>
 
       <div class="person reveal">
-        <div class="avatar">LN</div>
-        <div class="info">
-          <div class="name">Linda Ntunge-Ndinisa</div>
-          <div class="role">Service Advisor — Renault</div>
+        <div class="avatar c3">LN</div>
+        <div class="person-info">
+          <div class="person-name">Linda Ntunge-Ndinisa</div>
+          <div class="person-role">Service Advisor — Renault</div>
         </div>
       </div>
 
       <div class="person reveal">
-        <div class="avatar">NG</div>
-        <div class="info">
-          <div class="name">Nolan Gaehler</div>
-          <div class="role">Service Advisor — Haval / GWM</div>
+        <div class="avatar c4">NG</div>
+        <div class="person-info">
+          <div class="person-name">Nolan Gaehler</div>
+          <div class="person-role">Service Advisor — Haval / GWM</div>
         </div>
       </div>
     </div>
@@ -1017,13 +1523,13 @@
 </main>
 
 <footer>
-  <div class="inner">
-    <div>
-      <strong>Nissan Mthatha</strong> · N2 Hillcrest Shopping Centre, Mthatha, 5100<br>
-      Internal rules &amp; regulations reference.
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>NISSAN MTHATHA · OPERATIONS HUB</strong><br>
+      N2 Hillcrest Shopping Centre, Hillcrest, Mthatha, 5100 · Internal reference
     </div>
     <button class="print-btn" onclick="window.print()">
-      🖨️ Print / Save PDF
+      ⬇ Export / Print
     </button>
   </div>
 </footer>
@@ -1031,15 +1537,6 @@
 <button class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
 
 <script>
-  /* ---------- ACCORDION ---------- */
-  document.querySelectorAll('.acc-head').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const acc = btn.parentElement;
-      const open = acc.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open);
-    });
-  });
-
   /* ---------- SCROLL REVEAL ---------- */
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1048,7 +1545,7 @@
         revealObs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
@@ -1061,7 +1558,7 @@
   const topBtn = document.getElementById('topBtn');
 
   const onScroll = () => {
-    const y = window.scrollY + 120;
+    const y = window.scrollY + 180;
     let current = sections[0];
     for (const s of sections) {
       if (s.offsetTop <= y) current = s;
@@ -1070,7 +1567,7 @@
       'active', a.getAttribute('href') === '#' + current.id
     ));
 
-    topBtn.classList.toggle('show', window.scrollY > 500);
+    topBtn.classList.toggle('show', window.scrollY > 600);
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -1080,14 +1577,40 @@
     window.scrollTo({ top: 0, behavior: 'smooth' })
   );
 
-  /* ---------- AUTO-OPEN FIRST ACCORDION PER SECTION ---------- */
-  document.querySelectorAll('section').forEach(sec => {
-    const first = sec.querySelector('.acc');
-    if (first) {
-      first.classList.add('open');
-      first.querySelector('.acc-head').setAttribute('aria-expanded', 'true');
-    }
-  });
+  /* ---------- SUBTLE PARALLAX ON HERO GLOW ---------- */
+  const hero = document.querySelector('.hero');
+  window.addEventListener('mousemove', (e) => {
+    if (!hero) return;
+    const x = (e.clientX / window.innerWidth - .5) * 10;
+    const y = (e.clientY / window.innerHeight - .5) * 10;
+    hero.style.backgroundPosition = `${x}px ${y}px`;
+  }, { passive: true });
+
+  /* ---------- METRIC COUNT-UP (for pure numeric values) ---------- */
+  const metrics = document.querySelectorAll('.metric .val');
+  const metricObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = parseInt(el.textContent, 10);
+        if (!isNaN(target) && target > 0 && target < 1000) {
+          let cur = 0;
+          const step = Math.max(1, Math.ceil(target / 30));
+          const tick = () => {
+            cur += step;
+            if (cur >= target) { el.textContent = target; return; }
+            el.textContent = cur;
+            requestAnimationFrame(tick);
+          };
+          el.textContent = '0';
+          tick();
+        }
+        metricObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  metrics.forEach(m => metricObs.observe(m));
 </script>
 
 </body>
