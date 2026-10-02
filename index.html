@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nissan Mthatha — Rules &amp; Info</title>
+<style>
+  /* ============ BASE ============ */
+  :root{
+    --red:#e11d48;
+    --red-soft:#fff1f4;
+    --red-line:#ffd4de;
+    --ink:#111827;
+    --ink-soft:#374151;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --bg:#fafbfc;
+    --card:#ffffff;
+    --green:#059669;
+    --green-soft:#ecfdf5;
+    --amber:#d97706;
+    --amber-soft:#fffbeb;
+    --blue:#2563eb;
+    --blue-soft:#eff6ff;
+    --radius:16px;
+    --shadow-sm:0 1px 2px rgba(17,24,39,.04), 0 2px 8px rgba(17,24,39,.04);
+    --shadow-md:0 4px 12px rgba(17,24,39,.06), 0 12px 32px rgba(17,24,39,.06);
+    --shadow-lg:0 8px 24px rgba(17,24,39,.08), 0 24px 56px rgba(17,24,39,.08);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink-soft);
+    line-height:1.65;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    background:linear-gradient(160deg,#111827 0%, #1f2937 50%, #374151 100%);
+    color:#fff;
+    padding:56px 24px 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-120px;right:-120px;
+    width:420px;height:420px;
+    background:radial-gradient(circle, rgba(225,29,72,.35), transparent 70%);
+    border-radius:50%;
+    animation:float 12s ease-in-out infinite;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:-160px;left:-100px;
+    width:360px;height:360px;
+    background:radial-gradient(circle, rgba(59,130,246,.18), transparent 70%);
+    border-radius:50%;
+    animation:float 15s ease-in-out infinite reverse;
+  }
+  @keyframes float{
+    0%,100%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(24px,-24px) scale(1.08)}
+  }
+  .hero .inner{max-width:820px;margin:0 auto;position:relative;z-index:1}
+
+  .hero .badge-top{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(225,29,72,.2);
+    border:1px solid rgba(225,29,72,.4);
+    color:#fecdd3;
+    padding:6px 14px;border-radius:999px;
+    font-size:.82rem;font-weight:600;
+    letter-spacing:.02em;
+    margin-bottom:20px;
+    animation:fadeDown .7s ease both;
+  }
+  .hero .badge-top .dot{
+    width:7px;height:7px;border-radius:50%;background:#fb7185;
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:.5;transform:scale(1.3)}
+  }
+
+  .hero h1{
+    font-size:clamp(1.85rem,5vw,2.6rem);
+    font-weight:800;
+    letter-spacing:-.03em;
+    line-height:1.15;
+    margin-bottom:16px;
+    animation:fadeDown .7s .1s ease both;
+  }
+  .hero p{
+    color:#9ca3af;
+    font-size:clamp(.95rem,2.2vw,1.08rem);
+    max-width:620px;
+    animation:fadeDown .7s .2s ease both;
+  }
+
+  .brand-chips{
+    display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;
+    animation:fadeDown .7s .3s ease both;
+  }
+  .chip{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    color:#e5e7eb;
+    padding:5px 13px;border-radius:999px;
+    font-size:.8rem;font-weight:500;
+    transition:.2s;
+  }
+  .chip:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+  .chip.hot{
+    background:rgba(225,29,72,.22);
+    border-color:rgba(225,29,72,.5);
+    color:#fecdd3;
+  }
+
+  @keyframes fadeDown{
+    from{opacity:0;transform:translateY(-12px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* ============ NAV ============ */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .inner{
+    max-width:820px;margin:0 auto;
+    display:flex;gap:4px;overflow-x:auto;
+    padding:10px 20px;
+    scrollbar-width:none;
+  }
+  .nav .inner::-webkit-scrollbar{display:none}
+  .nav a{
+    white-space:nowrap;text-decoration:none;
+    color:var(--muted);font-size:.85rem;font-weight:600;
+    padding:8px 14px;border-radius:999px;
+    transition:.2s;
+  }
+  .nav a:hover{background:#f3f4f6;color:var(--ink)}
+  .nav a.active{background:var(--red);color:#fff;box-shadow:0 2px 8px rgba(225,29,72,.3)}
+
+  /* ============ MAIN ============ */
+  main{max-width:820px;margin:0 auto;padding:40px 20px 80px}
+
+  section{
+    scroll-margin-top:70px;
+    margin-bottom:48px;
+  }
+
+  .section-head{
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:6px;
+  }
+  .section-icon{
+    width:40px;height:40px;flex:none;
+    border-radius:12px;
+    background:var(--red-soft);
+    border:1px solid var(--red-line);
+    display:grid;place-items:center;
+    font-size:1.15rem;
+    transition:.3s;
+  }
+  section:hover .section-icon{
+    transform:scale(1.08) rotate(-5deg);
+    background:var(--red);
+  }
+  section:hover .section-icon span{
+    filter:brightness(0) invert(1);
+  }
+  .section-head h2{
+    font-size:clamp(1.25rem,3.5vw,1.5rem);
+    font-weight:800;
+    color:var(--ink);
+    letter-spacing:-.02em;
+  }
+  .section-sub{
+    color:var(--muted);
+    font-size:.92rem;
+    margin:0 0 20px 54px;
+  }
+  @media(max-width:520px){
+    .section-sub{margin-left:0}
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ============ CARD ============ */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    padding:22px 24px;
+    transition:box-shadow .3s, transform .3s, border-color .3s;
+  }
+  .card:hover{
+    box-shadow:var(--shadow-md);
+    border-color:#d1d5db;
+  }
+  .card + .card{margin-top:14px}
+
+  .card h3{
+    font-size:1rem;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:14px;
+    display:flex;align-items:center;gap:8px;
+  }
+
+  /* ============ CALLOUTS ============ */
+  .callout{
+    border-radius:var(--radius);
+    padding:18px 20px 18px 54px;
+    position:relative;
+    font-size:.93rem;
+    margin-bottom:16px;
+    border:1px solid;
+    transition:transform .3s, box-shadow .3s;
+  }
+  .callout:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+  .callout::before{
+    position:absolute;left:18px;top:17px;
+    font-size:1.1rem;
+  }
+  .callout.warn{background:var(--amber-soft);border-color:#fde68a;color:#92400e}
+  .callout.warn::before{content:"⚠️"}
+  .callout.info{background:var(--blue-soft);border-color:#bfdbfe;color:#1e40af}
+  .callout.info::before{content:"💡"}
+  .callout.ok{background:var(--green-soft);border-color:#a7f3d0;color:#065f46}
+  .callout.ok::before{content:"✅"}
+  .callout strong{font-weight:700}
+
+  /* ============ ACCORDION ============ */
+  .acc{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    overflow:hidden;
+    transition:box-shadow .3s, border-color .3s;
+  }
+  .acc:hover{box-shadow:var(--shadow-md);border-color:#d1d5db}
+  .acc + .acc{margin-top:12px}
+
+  .acc-head{
+    width:100%;
+    background:none;border:none;
+    padding:18px 20px;
+    display:flex;align-items:center;gap:14px;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:1rem;
+    font-weight:700;
+    color:var(--ink);
+    text-align:left;
+    transition:background .2s;
+  }
+  .acc-head:hover{background:#fafbfc}
+
+  .acc-head .ico{
+    width:36px;height:36px;flex:none;
+    border-radius:10px;
+    background:var(--red-soft);
+    border:1px solid var(--red-line);
+    display:grid;place-items:center;
+    font-size:1.05rem;
+    transition:.3s;
+  }
+  .acc.open .acc-head .ico{
+    background:var(--red);
+    transform:rotate(-8deg) scale(1.05);
+  }
+  .acc.open .acc-head .ico span{filter:brightness(0) invert(1)}
+
+  .acc-head .label{flex:1}
+  .acc-head .label small{
+    display:block;font-weight:500;color:var(--muted);
+    font-size:.82rem;margin-top:2px;
+  }
+
+  .acc-head .arrow{
+    width:24px;height:24px;flex:none;
+    display:grid;place-items:center;
+    color:var(--muted);
+    transition:transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .acc.open .acc-head .arrow{transform:rotate(180deg);color:var(--red)}
+
+  .acc-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .45s cubic-bezier(.16,1,.3,1), opacity .3s;
+    opacity:0;
+  }
+  .acc.open .acc-body{
+    max-height:2000px;
+    opacity:1;
+  }
+  .acc-inner{
+    padding:0 20px 20px;
+    border-top:1px solid var(--line);
+    margin-top:0;
+    padding-top:18px;
+  }
+
+  /* ============ INFO ROWS ============ */
+  .rows{display:flex;flex-direction:column;gap:0}
+  .row{
+    display:flex;justify-content:space-between;gap:16px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+    font-size:.93rem;
+    align-items:flex-start;
+  }
+  .row:last-child{border-bottom:none}
+  .row .k{font-weight:600;color:var(--ink);flex:none;max-width:55%}
+  .row .v{text-align:right;color:var(--ink-soft)}
+  @media(max-width:520px){
+    .row{flex-direction:column;gap:2px}
+    .row .k{max-width:100%}
+    .row .v{text-align:left}
+  }
+
+  /* ============ PERSON LIST ============ */
+  .people{display:grid;gap:10px}
+  .person{
+    display:flex;align-items:flex-start;gap:14px;
+    padding:14px 16px;
+    background:#fafbfc;
+    border:1px solid var(--line);
+    border-radius:12px;
+    transition:.25s;
+  }
+  .person:hover{
+    background:#fff;
+    border-color:var(--red-line);
+    transform:translateX(4px);
+    box-shadow:var(--shadow-sm);
+  }
+  .avatar{
+    width:38px;height:38px;flex:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--red),#fb7185);
+    color:#fff;
+    display:grid;place-items:center;
+    font-weight:700;font-size:.85rem;
+    letter-spacing:.02em;
+  }
+  .person .info{flex:1;min-width:0}
+  .person .name{font-weight:700;color:var(--ink);font-size:.94rem}
+  .person .role{font-size:.83rem;color:var(--muted);margin-top:2px;line-height:1.5}
+  .person a{
+    display:inline-block;
+    margin-top:6px;
+    font-size:.82rem;
+    color:var(--red);
+    text-decoration:none;
+    font-weight:600;
+    word-break:break-all;
+    transition:.2s;
+  }
+  .person a:hover{text-decoration:underline;color:#be123c}
+
+  /* ============ RULE LIST ============ */
+  .rules{list-style:none;counter-reset:r;display:flex;flex-direction:column;gap:10px}
+  .rules li{
+    counter-increment:r;
+    position:relative;
+    padding:14px 16px 14px 54px;
+    background:#fafbfc;
+    border:1px solid var(--line);
+    border-radius:12px;
+    font-size:.93rem;
+    transition:.25s;
+  }
+  .rules li:hover{
+    background:#fff;
+    border-color:var(--red-line);
+    transform:translateX(4px);
+    box-shadow:var(--shadow-sm);
+  }
+  .rules li::before{
+    content:counter(r);
+    position:absolute;
+    left:14px;top:13px;
+    width:28px;height:28px;
+    border-radius:50%;
+    background:var(--red);
+    color:#fff;
+    display:grid;place-items:center;
+    font-weight:700;font-size:.82rem;
+    box-shadow:0 2px 6px rgba(225,29,72,.3);
+  }
+  .rules strong{color:var(--ink);font-weight:700}
+
+  /* ============ BULLET LIST ============ */
+  .bullets{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .bullets li{
+    position:relative;
+    padding:6px 0 6px 26px;
+    font-size:.93rem;
+  }
+  .bullets li::before{
+    content:"";
+    position:absolute;
+    left:6px;top:15px;
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--red);
+    transition:.25s;
+  }
+  .bullets li:hover::before{
+    transform:scale(1.4);
+    box-shadow:0 0 0 4px rgba(225,29,72,.12);
+  }
+  .bullets strong{color:var(--ink);font-weight:700}
+
+  /* ============ BADGES ============ */
+  .badge{
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:999px;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    vertical-align:middle;
+  }
+  .badge.open{background:var(--green-soft);color:var(--green);border:1px solid #a7f3d0}
+  .badge.closed{background:var(--red-soft);color:var(--red);border:1px solid var(--red-line)}
+  .badge.soon{background:var(--amber-soft);color:var(--amber);border:1px solid #fde68a}
+
+  /* ============ EMAIL ============ */
+  code.mail{
+    background:#f3f4f6;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:1px 7px;
+    font-size:.85em;
+    color:var(--ink);
+    word-break:break-all;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    border-top:1px solid var(--line);
+    background:#fff;
+    padding:28px 20px;
+  }
+  footer .inner{
+    max-width:820px;margin:0 auto;
+    display:flex;justify-content:space-between;
+    align-items:center;gap:16px;flex-wrap:wrap;
+    font-size:.85rem;color:var(--muted);
+  }
+  footer strong{color:var(--ink)}
+
+  .print-btn{
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    padding:10px 20px;
+    font-size:.85rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+    transition:.25s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .print-btn:hover{
+    background:var(--red);
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(225,29,72,.3);
+  }
+
+  /* ============ TOP BUTTON ============ */
+  .top-btn{
+    position:fixed;right:20px;bottom:20px;z-index:60;
+    width:46px;height:46px;
+    border-radius:50%;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-size:1.1rem;
+    cursor:pointer;
+    box-shadow:0 8px 24px rgba(17,24,39,.25);
+    opacity:0;pointer-events:none;
+    transform:translateY(16px);
+    transition:.35s cubic-bezier(.16,1,.3,1);
+  }
+  .top-btn.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+  .top-btn:hover{background:var(--red);transform:translateY(-3px)}
+
+  /* ============ MOBILE ============ */
+  @media(max-width:640px){
+    main{padding:28px 16px 70px}
+    .hero{padding:40px 16px 48px}
+    .nav .inner{padding:10px 16px}
+    .card{padding:18px 18px}
+    .acc-head{padding:16px}
+    .acc-inner{padding:16px}
+    .rules li{padding:12px 14px 12px 50px}
+  }
+
+  /* ============ PRINT ============ */
+  @media print{
+    body{background:#fff;font-size:11pt}
+    .hero{background:#fff;color:#000;padding:0 0 20px}
+    .hero::before,.hero::after{display:none}
+    .hero h1{color:#000}
+    .hero p{color:#333}
+    .chip{background:none;border:1px solid #999;color:#000}
+    .badge-top{background:none;border:1px solid #999;color:#000}
+    .nav,.top-btn,.print-btn{display:none !important}
+    main{max-width:none;padding:0}
+    .acc-body{max-height:none !important;opacity:1 !important}
+    .acc-head .arrow{display:none}
+    .acc{page-break-inside:avoid;border:1px solid #ccc;box-shadow:none}
+    .reveal{opacity:1 !important;transform:none !important}
+    section{page-break-inside:avoid;margin-bottom:22px}
+    .card,.callout{box-shadow:none}
+    a{color:#000;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="inner">
+    <div class="badge-top">
+      <span class="dot"></span>
+      Internal Operating Guide
+    </div>
+    <h1>Nissan Mthatha — Rules &amp; Info</h1>
+    <p>Everything you need to know about bookings, service, parts and who to contact — all in one simple place.</p>
+    <div class="brand-chips">
+      <span class="chip">Nissan</span>
+      <span class="chip">Datsun</span>
+      <span class="chip">Renault</span>
+      <span class="chip">GWM</span>
+      <span class="chip">Haval</span>
+      <span class="chip hot">Foton · coming soon</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="Section navigation">
+  <div class="inner">
+    <a href="#start">Start Here</a>
+    <a href="#hours">Hours</a>
+    <a href="#bookings">Bookings</a>
+    <a href="#workshop">Workshop</a>
+    <a href="#parts">Parts</a>
+    <a href="#comms">Communication</a>
+    <a href="#money">Invoicing</a>
+    <a href="#people">Contacts</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ 1. START HERE ============ -->
+  <section id="start">
+    <div class="section-head reveal">
+      <div class="section-icon"><span>📍</span></div>
+      <h2>Start Here</h2>
+    </div>
+    <p class="section-sub reveal">The basics — where we are and what we service.</p>
+
+    <div class="callout warn reveal">
+      <strong>Foton is coming.</strong> Until further notice, if a customer wants to book a Foton
+      for service, <strong>take a message and pass it to the Booking Clerk</strong>. Don't book it.
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>🚗</span></span>
+        <span class="label">Brands we service
+          <small>Nissan, Datsun, Renault, GWM &amp; Haval</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <ul class="bullets">
+            <li><strong>Nissan</strong> — full workshop support</li>
+            <li><strong>Datsun</strong> — service &amp; minor repairs</li>
+            <li><strong>Renault</strong> — full workshop support</li>
+            <li><strong>GWM</strong> — service &amp; minor repairs</li>
+            <li><strong>Haval</strong> — service &amp; minor repairs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>🏢</span></span>
+        <span class="label">Where to find us
+          <small>N2 Hillcrest Shopping Centre, Mthatha</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <div class="rows">
+            <div class="row"><span class="k">Address</span><span class="v">N2 Hillcrest Shopping Centre, Hillcrest, Mthatha, 5100</span></div>
+            <div class="row"><span class="k">Booking assistance</span><span class="v">Service &amp; minor repairs — Nissan, Datsun, Renault, GWM, Haval</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. HOURS ============ -->
+  <section id="hours">
+    <div class="section-head reveal">
+      <div class="section-icon"><span>🕐</span></div>
+      <h2>Operating Hours</h2>
+    </div>
+    <p class="section-sub reveal">Weekdays open — Saturdays closed.</p>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>📅</span></span>
+        <span class="label">Weekdays
+          <small>Open · book-in 07:00 – 10:00</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <div class="rows">
+            <div class="row"><span class="k">Workshop capacity</span><span class="v">Renault <strong>15</strong> · Nissan <strong>30</strong></span></div>
+            <div class="row"><span class="k">Book-in times</span><span class="v"><strong>07:00 – 10:00</strong></span></div>
+            <div class="row"><span class="k">Shuttle service</span><span class="v">Yes — <strong>Town Only</strong></span></div>
+            <div class="row"><span class="k">Afternoon drop-offs</span><span class="v"><span class="badge closed">No</span></span></div>
+            <div class="row"><span class="k">Booking assistance</span><span class="v">Service &amp; minor repairs for all 5 brands</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>🛑</span></span>
+        <span class="label">Saturdays
+          <small>Closed — no bookings, no shuttles</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <div class="rows">
+            <div class="row"><span class="k">Workshop</span><span class="v"><span class="badge closed">Closed</span></span></div>
+            <div class="row"><span class="k">Book-in times</span><span class="v">Closed</span></div>
+            <div class="row"><span class="k">Shuttle service</span><span class="v">Closed</span></div>
+            <div class="row"><span class="k">Afternoon drop-offs</span><span class="v">Closed</span></div>
+            <div class="row"><span class="k">Booking assistance</span><span class="v">Closed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info reveal">
+      <strong>Saturday exception:</strong> if a client calls on Saturday, Central can still
+      book them in for <strong>Monday</strong>.
+    </div>
+  </section>
+
+  <!-- ============ 3. BOOKINGS ============ -->
+  <section id="bookings">
+    <div class="section-head reveal">
+      <div class="section-icon"><span>📝</span></div>
+      <h2>Booking Rules</h2>
+    </div>
+    <p class="section-sub reveal">Follow these every time — no exceptions.</p>
+
+    <div class="card reveal">
+      <ol class="rules">
+        <li><strong>Book 3 days in advance.</strong> No same-day or next-day bookings.</li>
+        <li><strong>Book-in window is 07:00 – 10:00</strong> on weekdays only.</li>
+        <li><strong>No afternoon drop-offs.</strong> Late arrivals can't be accepted.</li>
+        <li><strong>No Saturday bookings.</strong> Workshop and booking desk are closed.</li>
+        <li><strong>Saturday → Monday:</strong> Central can assist with Monday bookings when a client calls on Saturday.</li>
+        <li><strong>Foton requests:</strong> take a message and pass it to the Booking Clerk — don't book.</li>
+        <li><strong>Confirmations go to:</strong> Sichulumancile MATYOLO, Naledi Mayekiso, Yaleka Dinana, Lwazi Nenemba.</li>
+        <li><strong>Always CC the manager</strong> on escalations and bookings.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 4. WORKSHOP ============ -->
+  <section id="workshop">
+    <div class="section-head reveal">
+      <div class="section-icon"><span>🔧</span></div>
+      <h2>Workshop &amp; Service</h2>
+    </div>
+    <p class="section-sub reveal">Capacity, shuttles and who handles which brand.</p>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>🏭</span></span>
+        <span class="label">Capacity &amp; logistics
+          <small>Nissan 30 · Renault 15 · Town shuttle only</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <div class="rows">
+            <div class="row"><span class="k">Nissan capacity</span><span class="v"><strong>30</strong> vehicles</span></div>
+            <div class="row"><span class="k">Renault capacity</span><span class="v"><strong>15</strong> vehicles</span></div>
+            <div class="row"><span class="k">Shuttle service</span><span class="v">Offered — <strong>Town Only</strong></span></div>
+            <div class="row"><span class="k">Afternoon drop-offs</span><span class="v">Not available</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>👤</span></span>
+        <span class="label">Service advisors by brand
+          <small>Who to speak to for each make</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <div class="rows">
+            <div class="row"><span class="k">Nissan</span><span class="v">Nambita Tatubana</span></div>
+            <div class="row"><span class="k">Renault</span><span class="v">Linda Ntunge-Ndinisa</span></div>
+            <div class="row"><span class="k">Haval / GWM</span><span class="v">Nolan Gaehler</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>☎️</span></span>
+        <span class="label">Counter responsibilities
+          <small>Who handles which calls</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <ul class="bullets">
+            <li><strong>Yaleka Dinana</strong> — workshop counter, all service-related calls, Nissan workshop issues.</li>
+            <li><strong>Lwazi Nenemba</strong> — front counter, all non-service calls, fleet sales (non-workshop).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. PARTS ============ -->
+  <section id="parts">
+    <div class="section-head reveal">
+      <div class="section-icon"><span>⚙️</span></div>
+      <h2>Parts Department</h2>
+    </div>
+    <p class="section-sub reveal">We stock and assist with four brands.</p>
+
+    <div class="callout ok reveal">
+      Parts support covers <strong>Nissan, Renault, Haval and GWM</strong>.
+    </div>
+
+    <div class="card reveal">
+      <h3>🔑 Who helps with what</h3>
+      <div class="rows">
+        <div class="row">
+          <span class="k">Lwazi Nenemba</span>
+          <span class="v">All three brands · Renault, Haval &amp; GWM counter · Fleet sales</span>
+        </div>
+        <div class="row">
+          <span class="k">Yaleka Dinana</span>
+          <span class="v">Nissan &amp; Renault parts · Nissan workshop issues</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info reveal">
+      <strong>Reminder:</strong> CC the manager in on all callback messages.
+    </div>
+  </section>
+
+  <!-- ============ 6. COMMUNICATION ============ -->
+  <section id="comms">
+    <div class="section-head reveal">
+      <div class="section-icon"><span>📧</span></div>
+      <h2>Communication</h2>
+    </div>
+    <p class="section-sub reveal">Where quotations, confirmations and callbacks go.</p>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>💬</span></span>
+        <span class="label">Quotation requests
+          <small>Forward to three people</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <div class="rows">
+            <div class="row"><span class="k">Yaleka Dinana</span><span class="v"><code class="mail">ydinana@cfaomotors.co.za</code></span></div>
+            <div class="row"><span class="k">Lwazi Nenemba</span><span class="v"><code class="mail">lnenemba@cfaomotors.co.za</code></span></div>
+            <div class="row"><span class="k">Zanele Fadane</span><span class="v"><code class="mail">zfadana@cfaomotors.co.za</code></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>✅</span></span>
+        <span class="label">Booking confirmations
+          <small>Send to four people</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <div class="rows">
+            <div class="row"><span class="k">Sichulumancile MATYOLO</span><span class="v">—</span></div>
+            <div class="row"><span class="k">Naledi Mayekiso</span><span class="v"><code class="mail">nmayekiso@cfaomotors.co.za</code></span></div>
+            <div class="row"><span class="k">Yaleka Dinana</span><span class="v"><code class="mail">ydinana@cfaomotors.co.za</code></span></div>
+            <div class="row"><span class="k">Lwazi Nenemba</span><span class="v"><code class="mail">lnenemba@cfaomotors.co.za</code></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>🔄</span></span>
+        <span class="label">Callback requests
+          <small>Send to Mthobei &amp; Naledi, CC everyone</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <div class="rows">
+            <div class="row"><span class="k">Send to</span><span class="v"><code class="mail">mthobei@cfaomotors.co.za</code><br><code class="mail">nmayekiso@cfaomotors.co.za</code></span></div>
+            <div class="row"><span class="k">Always CC</span><span class="v">Everyone in the department</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head" aria-expanded="false">
+        <span class="ico"><span>⚠️</span></span>
+        <span class="label">Escalations &amp; recalls
+          <small>Manager CC required · no recalls</small>
+        </span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">
+          <div class="rows">
+            <div class="row"><span class="k">Manager on escalations</span><span class="v"><span class="badge open">Yes — always CC</span></span></div>
+            <div class="row"><span class="k">Recalls</span><span class="v"><span class="badge closed">None</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. INVOICING ============ -->
+  <section id="money">
+    <div class="section-head reveal">
+      <div class="section-icon"><span>💰</span></div>
+      <h2>Invoicing &amp; Refunds</h2>
+    </div>
+    <p class="section-sub reveal">Who owns the money side.</p>
+
+    <div class="card reveal">
+      <ul class="bullets">
+        <li><strong>Donnavan</strong> handles invoicing in the department.</li>
+        <li><strong>Lwazi and Yaleka</strong> do their own invoicing — refer issues to the manager.</li>
+        <li><strong>Salesmen</strong> process their own refunds.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 8. CONTACTS ============ -->
+  <section id="people">
+    <div class="section-head reveal">
+      <div class="section-icon"><span>👥</span></div>
+      <h2>Key Contacts</h2>
+    </div>
+    <p class="section-sub reveal">Everyone you might need to reach.</p>
+
+    <div class="people">
+      <div class="person reveal">
+        <div class="avatar">YD</div>
+        <div class="info">
+          <div class="name">Yaleka Dinana</div>
+          <div class="role">Workshop counter · Nissan workshop issues · Nissan &amp; Renault parts · Own invoicing</div>
+          <a href="mailto:ydinana@cfaomotors.co.za">ydinana@cfaomotors.co.za</a>
+        </div>
+      </div>
+
+      <div class="person reveal">
+        <div class="avatar">LN</div>
+        <div class="info">
+          <div class="name">Lwazi Nenemba</div>
+          <div class="role">Front counter · Renault, Haval &amp; GWM parts · Fleet sales · Non-service calls · Own invoicing</div>
+          <a href="mailto:lnenemba@cfaomotors.co.za">lnenemba@cfaomotors.co.za</a>
+        </div>
+      </div>
+
+      <div class="person reveal">
+        <div class="avatar">ZF</div>
+        <div class="info">
+          <div class="name">Zanele Fadane</div>
+          <div class="role">Quotation email requests</div>
+          <a href="mailto:zfadana@cfaomotors.co.za">zfadana@cfaomotors.co.za</a>
+        </div>
+      </div>
+
+      <div class="person reveal">
+        <div class="avatar">NM</div>
+        <div class="info">
+          <div class="name">Naledi Mayekiso</div>
+          <div class="role">Booking confirmations · Callback requests</div>
+          <a href="mailto:nmayekiso@cfaomotors.co.za">nmayekiso@cfaomotors.co.za</a>
+        </div>
+      </div>
+
+      <div class="person reveal">
+        <div class="avatar">MT</div>
+        <div class="info">
+          <div class="name">Mthobei</div>
+          <div class="role">Callback requests</div>
+          <a href="mailto:mthobei@cfaomotors.co.za">mthobei@cfaomotors.co.za</a>
+        </div>
+      </div>
+
+      <div class="person reveal">
+        <div class="avatar">SM</div>
+        <div class="info">
+          <div class="name">Sichulumancile MATYOLO</div>
+          <div class="role">Booking confirmations</div>
+        </div>
+      </div>
+
+      <div class="person reveal">
+        <div class="avatar">DN</div>
+        <div class="info">
+          <div class="name">Donavan</div>
+          <div class="role">Invoicing in the department · CC on directed callbacks</div>
+        </div>
+      </div>
+
+      <div class="person reveal">
+        <div class="avatar">NT</div>
+        <div class="info">
+          <div class="name">Nambita Tatubana</div>
+          <div class="role">Service Advisor — Nissan</div>
+        </div>
+      </div>
+
+      <div class="person reveal">
+        <div class="avatar">LN</div>
+        <div class="info">
+          <div class="name">Linda Ntunge-Ndinisa</div>
+          <div class="role">Service Advisor — Renault</div>
+        </div>
+      </div>
+
+      <div class="person reveal">
+        <div class="avatar">NG</div>
+        <div class="info">
+          <div class="name">Nolan Gaehler</div>
+          <div class="role">Service Advisor — Haval / GWM</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <div>
+      <strong>Nissan Mthatha</strong> · N2 Hillcrest Shopping Centre, Mthatha, 5100<br>
+      Internal rules &amp; regulations reference.
+    </div>
+    <button class="print-btn" onclick="window.print()">
+      🖨️ Print / Save PDF
+    </button>
+  </div>
+</footer>
+
+<button class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
+
+<script>
+  /* ---------- ACCORDION ---------- */
+  document.querySelectorAll('.acc-head').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const acc = btn.parentElement;
+      const open = acc.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  });
+
+  /* ---------- SCROLL REVEAL ---------- */
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  /* ---------- NAV SCROLL SPY ---------- */
+  const navLinks = [...document.querySelectorAll('.nav a')];
+  const sections = navLinks
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const topBtn = document.getElementById('topBtn');
+
+  const onScroll = () => {
+    const y = window.scrollY + 120;
+    let current = sections[0];
+    for (const s of sections) {
+      if (s.offsetTop <= y) current = s;
+    }
+    navLinks.forEach(a => a.classList.toggle(
+      'active', a.getAttribute('href') === '#' + current.id
+    ));
+
+    topBtn.classList.toggle('show', window.scrollY > 500);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('load', onScroll);
+
+  topBtn.addEventListener('click', () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  );
+
+  /* ---------- AUTO-OPEN FIRST ACCORDION PER SECTION ---------- */
+  document.querySelectorAll('section').forEach(sec => {
+    const first = sec.querySelector('.acc');
+    if (first) {
+      first.classList.add('open');
+      first.querySelector('.acc-head').setAttribute('aria-expanded', 'true');
+    }
+  });
+</script>
+
+</body>
+</html>
